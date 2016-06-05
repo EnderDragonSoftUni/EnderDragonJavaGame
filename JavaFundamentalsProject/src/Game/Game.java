@@ -1,6 +1,7 @@
 package Game;
 
 import Display.Window;
+import GraphicHandler.Assets;
 import GraphicHandler.ImageLoader;
 import Objects.*;
 import Objects.Button;
@@ -22,10 +23,8 @@ public class Game extends Canvas implements Runnable {
 
     private ImageLoader imageLoader = new ImageLoader();
 
-    private Button startButton;
-    private Button exitButton;
-
     public Game(){
+        Assets.init();
         new Window(WIDTH, HEIGHT, TITLE, this);
     }
 
@@ -52,7 +51,6 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void run() {
-        init();
         while (running){
             this.requestFocus();
             long lastTime = System.nanoTime();
@@ -90,12 +88,6 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    private void init() {
-
-        startButton = new Button(WIDTH/2-100,150,imageLoader.loadImage("/res/StartButton.png"));
-        exitButton = new Button(WIDTH/2-100,250,imageLoader.loadImage("/res/ExitButton.png"));
-    }
-
     private void tick(){
 
     }
@@ -110,8 +102,8 @@ public class Game extends Canvas implements Runnable {
         g.setColor(Color.GRAY);
         g.fillRect(0,0, WIDTH, HEIGHT);
 
-        startButton.render(g);
-        exitButton.render(g);
+        Assets.startButton.render(g);
+        Assets.exitButton.render(g);
 
         g.dispose();
         bs.show();
