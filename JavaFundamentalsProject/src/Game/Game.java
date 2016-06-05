@@ -2,10 +2,6 @@ package Game;
 
 import Display.Window;
 import GraphicHandler.Assets;
-import GraphicHandler.ImageLoader;
-import Objects.*;
-import Objects.Button;
-
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -18,13 +14,26 @@ public class Game extends Canvas implements Runnable {
     public static final int HEIGHT = WIDTH / 12*9;
     public static final String TITLE = "Icy Somethink";
 
+    private Menu menu;
+
     public boolean running = false;
     private Thread thread;
 
-    private ImageLoader imageLoader = new ImageLoader();
+    public enum STATE {
+        Menu,
+        Game,
+        Credentials,
+        End;
+    }
+
+    public static STATE gameState = STATE.Menu;
 
     public Game(){
         Assets.init();
+
+        menu = new Menu(this);
+        this.addMouseListener(menu);
+
         new Window(WIDTH, HEIGHT, TITLE, this);
     }
 
@@ -89,7 +98,9 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick(){
-
+        if (gameState == STATE.Menu){
+            menu.tick();
+        }
     }
 
     private void render(){
@@ -99,11 +110,12 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         Graphics g = bs.getDrawGraphics();
-        g.setColor(Color.GRAY);
-        g.fillRect(0,0, WIDTH, HEIGHT);
 
-        Assets.startButton.render(g);
-        Assets.exitButton.render(g);
+        if (gameState == Game.STATE.Menu) {
+            menu.render(g);
+        } else if (gameState == STATE.Game){
+            g.fillRect(0, 0, WIDTH, HEIGHT);
+        }
 
         g.dispose();
         bs.show();
