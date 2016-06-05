@@ -1,6 +1,10 @@
 package Game;
 
 import Display.Window;
+import GraphicHandler.ImageLoader;
+import Objects.*;
+import Objects.Button;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -16,9 +20,13 @@ public class Game extends Canvas implements Runnable {
     public boolean running = false;
     private Thread thread;
 
+    private ImageLoader imageLoader = new ImageLoader();
+
+    private Button startButton;
+    private Button exitButton;
+
     public Game(){
         new Window(WIDTH, HEIGHT, TITLE, this);
-
     }
 
     public synchronized void start(){
@@ -44,6 +52,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void run() {
+        init();
         while (running){
             this.requestFocus();
             long lastTime = System.nanoTime();
@@ -81,6 +90,12 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    private void init() {
+
+        startButton = new Button(WIDTH/2-100,150,imageLoader.loadImage("/res/StartButton.png"));
+        exitButton = new Button(WIDTH/2-100,250,imageLoader.loadImage("/res/ExitButton.png"));
+    }
+
     private void tick(){
 
     }
@@ -92,8 +107,11 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         Graphics g = bs.getDrawGraphics();
-        g.setColor(Color.white);
+        g.setColor(Color.GRAY);
         g.fillRect(0,0, WIDTH, HEIGHT);
+
+        startButton.render(g);
+        exitButton.render(g);
 
         g.dispose();
         bs.show();
