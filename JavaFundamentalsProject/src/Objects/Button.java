@@ -9,17 +9,17 @@ public class Button {
     private int y;
     private BufferedImage image;
 
-    public Button(int x, int y, BufferedImage image){
+    public Button(int x, int y, BufferedImage image) {
         this.x = x;
         this.y = y;
         this.image = image;
     }
 
-    public void tick(){
+    public void tick() {
 
     }
 
-    public void render(Graphics g){
-        g.drawImage(image,x,y,null);
+    public void render(Graphics g) {
+        g.drawImage(image, x, y, 200, 50, null);
     }
 }
