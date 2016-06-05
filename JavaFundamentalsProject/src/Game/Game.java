@@ -1,43 +1,42 @@
 package Game;
 
 import Display.Window;
-import GraphicHandler.Assets;
+import GraphicHandler.ImageLoader;
+import GraphicHandler.Input;
+import Objects.*;
 import Objects.Button;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  * Created by Niki on 5.6.2016 г..
  */
 public class Game extends Canvas implements Runnable {
     public static final int SCALE = 2;
-    public static final int WIDTH = 320 * SCALE;
+    public static final int WIDTH = 512 * SCALE;
     public static final int HEIGHT = WIDTH / 12*9;
     public static final String TITLE = "Icy Somethink";
 
-    private Menu menu;
     public boolean running = false;
     private Thread thread;
 
-    public enum STATE {
-        Menu,
-        Game,
-        Credentials,
-        End;
-    }
+    private ImageLoader imageLoader = new ImageLoader();
 
-    public static STATE gameState = STATE.Menu;
+    public static enum STATE{
+        MENU,
+        PLAY
+    };
+    public static STATE state = STATE.MENU;
+    private Menu menu;
+    private Play playWindow;
 
     private Button startButton;
     private Button exitButton;
 
     public Game(){
-        Assets.init();
-
-        menu = new Menu(this);
-        this.addMouseListener(menu);
-
         new Window(WIDTH, HEIGHT, TITLE, this);
     }
 
@@ -64,6 +63,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void run() {
+        init();
         while (running){
             this.requestFocus();
             long lastTime = System.nanoTime();
@@ -101,11 +101,22 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    private void tick(){
+    private void init() {
 
-        if (gameState == STATE.Menu){
-            menu.tick();
+        menu = new Menu();
+        playWindow = new Play();
+        this.addMouseListener(new Input());
+
+
+        startButton = new Button(WIDTH/2-100,150,imageLoader.loadImage("/res/StartButton.png"));
+        exitButton = new Button(WIDTH/2-100,250,imageLoader.loadImage("/res/ExitButton.png"));
+    }
+
+    private void tick(){
+        if (state == STATE.PLAY){
+            //TODO
         }
+
     }
 
     private void render(){
@@ -117,11 +128,20 @@ public class Game extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
 
 
-        if (gameState == Game.STATE.Menu) {
+        if (state == STATE.PLAY){
+            //TODO
+            playWindow.render(g);
+
+        }else if (state == STATE.MENU){
             menu.render(g);
-        } else if (gameState == STATE.Game){
-            g.drawImage(Assets.background, 0, 0, this);
+            startButton.render(g);
+            exitButton.render(g);
+
+
         }
+
+
+
 
         g.dispose();
         bs.show();
