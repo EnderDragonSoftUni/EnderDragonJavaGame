@@ -1,6 +1,9 @@
 package GraphicHandler;
+
 import Objects.Button;
 import Game.Game;
+
+import java.awt.image.BufferedImage;
 
 public class Assets {
     public static Button startButton;
@@ -11,10 +14,14 @@ public class Assets {
     public static int endButtonX = Game.WIDTH/2-100;
     public static int endButtonY = 250;
 
-    public static void init() {
-        startButton = new Button(startButtonX,startButtonY, ImageLoader.loadImage("/res/StartButton.png"));
-        exitButton = new Button(endButtonX,endButtonY, ImageLoader.loadImage("/res/ExitButton.png"));
+    public static BufferedImage background;
 
+
+
+    public static void init() {
+        startButton = new Button(startButtonX,startButtonY, ImageLoader.loadImage("/StartButton.png"));
+        exitButton = new Button(endButtonX,endButtonY, ImageLoader.loadImage("/ExitButton.png"));
+        background = ImageLoader.loadImage("/back.png");
     }
 
 }

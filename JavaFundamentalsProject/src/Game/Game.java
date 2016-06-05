@@ -120,7 +120,7 @@ public class Game extends Canvas implements Runnable {
         if (gameState == Game.STATE.Menu) {
             menu.render(g);
         } else if (gameState == STATE.Game){
-            g.fillRect(0, 0, WIDTH, HEIGHT);
+            g.drawImage(Assets.background, 0, 0, this);
         }
 
         g.dispose();

@@ -61,11 +61,15 @@ public class Menu extends MouseAdapter {
 
     public void render(Graphics g) {
         if (game.gameState == Game.STATE.Menu) {
-            g.setColor(Color.GRAY);
-            g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+            g.drawImage(Assets.background, 0, 0, game);
 
             Assets.startButton.render(g);
             Assets.exitButton.render(g);
+
+            Font fnt = new Font("Georgia", Font.BOLD, 48);
+            g.setFont(fnt);
+            g.setColor(Color.green);
+            g.drawString("SoftUni Tower", Game.WIDTH / 3 - 60, 100);
         }
     }
 }
