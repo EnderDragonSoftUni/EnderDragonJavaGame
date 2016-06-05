@@ -1,31 +1,22 @@
 package Game;
 
 import Display.Window;
-<<<<<<< HEAD
 import GraphicHandler.Assets;
-=======
-import GraphicHandler.ImageLoader;
-import GraphicHandler.Input;
-import Objects.*;
 import Objects.Button;
 
->>>>>>> 36b636895c4786954dd5105dd426b5b376364bf6
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 /**
  * Created by Niki on 5.6.2016 г..
  */
 public class Game extends Canvas implements Runnable {
     public static final int SCALE = 2;
-    public static final int WIDTH = 512 * SCALE;
+    public static final int WIDTH = 320 * SCALE;
     public static final int HEIGHT = WIDTH / 12*9;
     public static final String TITLE = "Icy Somethink";
 
     private Menu menu;
-
     public boolean running = false;
     private Thread thread;
 
@@ -38,25 +29,15 @@ public class Game extends Canvas implements Runnable {
 
     public static STATE gameState = STATE.Menu;
 
-    public static enum STATE{
-        MENU,
-        PLAY
-    };
-    public static STATE state = STATE.MENU;
-    private Menu menu;
-
     private Button startButton;
     private Button exitButton;
 
     public Game(){
-<<<<<<< HEAD
         Assets.init();
 
         menu = new Menu(this);
         this.addMouseListener(menu);
 
-=======
->>>>>>> 36b636895c4786954dd5105dd426b5b376364bf6
         new Window(WIDTH, HEIGHT, TITLE, this);
     }
 
@@ -83,7 +64,6 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void run() {
-        init();
         while (running){
             this.requestFocus();
             long lastTime = System.nanoTime();
@@ -121,28 +101,11 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    private void init() {
-
-        menu = new Menu();
-        this.addMouseListener(new Input());
-
-
-        startButton = new Button(WIDTH/2-100,150,imageLoader.loadImage("/res/StartButton.png"));
-        exitButton = new Button(WIDTH/2-100,250,imageLoader.loadImage("/res/ExitButton.png"));
-    }
-
     private void tick(){
-<<<<<<< HEAD
+
         if (gameState == STATE.Menu){
             menu.tick();
         }
-=======
-        if (state == STATE.PLAY){
-            //TODO
-            System.out.println("PLAY");
-        }
-
->>>>>>> 36b636895c4786954dd5105dd426b5b376364bf6
     }
 
     private void render(){
@@ -153,29 +116,12 @@ public class Game extends Canvas implements Runnable {
         }
         Graphics g = bs.getDrawGraphics();
 
-<<<<<<< HEAD
+
         if (gameState == Game.STATE.Menu) {
             menu.render(g);
         } else if (gameState == STATE.Game){
             g.fillRect(0, 0, WIDTH, HEIGHT);
         }
-=======
-        //g.setColor(Color.GRAY);
-        //g.fillRect(0,0, WIDTH, HEIGHT);
-        if (state == STATE.PLAY){
-            //TODO
-            System.out.println("play");
-
-        }else if (state == STATE.MENU){
-            menu.render(g);
-
-
-        }
-
-
-        startButton.render(g);
-        exitButton.render(g);
->>>>>>> 36b636895c4786954dd5105dd426b5b376364bf6
 
         g.dispose();
         bs.show();

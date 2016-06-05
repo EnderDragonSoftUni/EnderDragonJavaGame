@@ -1,13 +1,14 @@
 package GraphicHandler;
+import Objects.Button;
+import Game.Game;
 
 public class Assets {
-<<<<<<< HEAD
     public static Button startButton;
-    public static int startButtonX = WIDTH/2-100;
+    public static int startButtonX = Game.WIDTH/2-100;
     public static int startButtonY = 150;
 
     public static Button exitButton;
-    public static int endButtonX = WIDTH/2-100;
+    public static int endButtonX = Game.WIDTH/2-100;
     public static int endButtonY = 250;
 
     public static void init() {
@@ -15,6 +16,5 @@ public class Assets {
         exitButton = new Button(endButtonX,endButtonY, ImageLoader.loadImage("/res/ExitButton.png"));
 
     }
-=======
->>>>>>> 36b636895c4786954dd5105dd426b5b376364bf6
+
 }
