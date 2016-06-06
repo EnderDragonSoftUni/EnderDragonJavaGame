@@ -62,7 +62,7 @@ public class Menu extends MouseAdapter {
     public void render(Graphics g) {
         if (game.gameState == Game.STATE.Menu) {
 
-            g.drawImage(Assets.gameLogo, Game.WIDTH / 3 - 80, 40, 380, 70, null);
+            g.drawImage(Assets.gameLogo, Game.WIDTH / 3 - 80, 20, 380, 70, null);
             Assets.startButton.render(g);
             Assets.exitButton.render(g);
 

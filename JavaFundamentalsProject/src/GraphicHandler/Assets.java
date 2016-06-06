@@ -3,6 +3,7 @@ package GraphicHandler;
 import Game.Game;
 import Objects.Button;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Assets {
@@ -16,12 +17,14 @@ public class Assets {
 
     public static BufferedImage background;
     public static BufferedImage gameLogo;
-
+    public static SpriteSheet player;
 
     public static void init() {
         startButton = new Button(startButtonX,startButtonY, ImageLoader.loadImage("/PlayButton.png"));
         exitButton = new Button(endButtonX,endButtonY, ImageLoader.loadImage("/ExitButton.png"));
-        background = ImageLoader.loadImage("/back.png");
+        background = ImageLoader.loadImage("/background.png");
         gameLogo = ImageLoader.loadImage("/logo.png");
+
+        player = new SpriteSheet(ImageLoader.loadImage("/sprite.png"));
     }
 }

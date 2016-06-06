@@ -2,8 +2,11 @@ package Game;
 
 import Display.Window;
 import GraphicHandler.Assets;
+import GraphicHandler.InputHandler;
+import Objects.Player;
 import GraphicHandler.SpriteSheet;
 import Objects.Button;
+
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -14,12 +17,16 @@ import java.awt.image.BufferStrategy;
 public class Game extends Canvas implements Runnable {
     public static final int SCALE = 2;
     public static final int WIDTH = 320 * SCALE;
-    public static final int HEIGHT = WIDTH / 12*9;
+    public static final int HEIGHT = WIDTH / 12 * 9;
     public static final String TITLE = "Icy Somethink";
 
     private Menu menu;
     public boolean running = false;
     private Thread thread;
+    private Player player;
+
+    private InputHandler inputHandler;
+
 
     public enum STATE {
         Menu,
@@ -30,17 +37,20 @@ public class Game extends Canvas implements Runnable {
 
     public static STATE gameState = STATE.Menu;
 
-    public Game(){
+    public Game() {
         Assets.init();
+
+        player = new Player(WIDTH / 2 - 60, 450);
 
         menu = new Menu(this);
         this.addMouseListener(menu);
+        this.inputHandler = new InputHandler(this);
 
         new Window(WIDTH, HEIGHT, TITLE, this);
     }
 
-    public synchronized void start(){
-        if (running){
+    public synchronized void start() {
+        if (running) {
             return;
         }
         running = true;
@@ -49,23 +59,23 @@ public class Game extends Canvas implements Runnable {
     }
 
     private synchronized void stop() {
-        if (!running){
+        if (!running) {
             return;
         }
         running = false;
-        try{
+        try {
             thread.join();
-        }catch(InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.exit(1);
     }
 
     public void run() {
-        while (running){
+        while (running) {
             this.requestFocus();
             long lastTime = System.nanoTime();
-            double amountOfTicks = 60.0;
+            double amountOfTicks = 10.0;
             double ns = 1000000000 / amountOfTicks;
             double delta = 0;
             long timer = System.currentTimeMillis();
@@ -99,14 +109,15 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    private void tick(){
-
-        if (gameState == STATE.Menu){
+    private void tick() {
+        if (gameState == STATE.Game) {
+            player.tick();
+        } else if (gameState == STATE.Menu) {
             menu.tick();
         }
     }
 
-    private void render(){
+    private void render() {
         BufferStrategy bs = this.getBufferStrategy();
         if (bs == null) {
             this.createBufferStrategy(3);
@@ -116,10 +127,11 @@ public class Game extends Canvas implements Runnable {
 
         g.drawImage(Assets.background, 0, 0, WIDTH, HEIGHT, null);
 
-        if (gameState == Game.STATE.Menu || gameState == STATE.Credentials) {
-            menu.render(g);
-        } else if (gameState == STATE.Game){
+        if (gameState == STATE.Game) {
+            player.render(g);
 
+        } else if (gameState == Game.STATE.Menu || gameState == STATE.Credentials) {
+            menu.render(g);
         }
 
         g.dispose();
