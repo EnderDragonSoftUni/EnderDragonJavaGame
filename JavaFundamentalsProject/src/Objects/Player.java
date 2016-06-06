@@ -6,17 +6,16 @@ import GraphicHandler.SpriteSheet;
 
 import java.awt.*;
 
-/**
- * Created by Rosen on 04-Jun-16.
- */
 public class Player {
     private int x, y, width, height, velocity;
-    private SpriteSheet img;
-    private Rectangle boundingBox;
-
     private int column = 0;
     private int row = 0;
 
+    private SpriteSheet img;
+    private Rectangle boundingBox;
+
+    public static boolean inAir = true;
+    public static double gravity = 0;
     public static boolean isMovingLeft, isMovingRight;
 
 
@@ -31,6 +30,22 @@ public class Player {
     }
 
     public void tick() {
+
+        if (x < this.width*-1){
+            x = Game.WIDTH;
+        }else if(x > Game.WIDTH){
+            x = this.width*-1;
+        }
+
+
+        if (boundingBox.intersects(BigPlatform.boundingBox) && gravity > 0){
+            gravity=0;
+            inAir = false;
+        }else{
+            this.y += this.gravity;
+            inAir = true;
+        }
+
         if (isMovingRight) {
             this.x += this.velocity;
             this.row = 0;
@@ -45,12 +60,16 @@ public class Player {
             this.column = 0;
         }
 
+        if (this.gravity < 14){
+            this.gravity+=0.3;
+        }
+
         this.boundingBox.setBounds(this.x, this.y, this.width, this.height);
     }
 
     public void render(Graphics g) {
         g.drawImage(this.img.crop(this.column * this.width, this.row * this.height, this.width, this.height)
-                , this.x, Game.HEIGHT / 2, null);
+                , this.x, this.y, null);
 
     }
 }

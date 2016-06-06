@@ -31,6 +31,9 @@ public class InputHandler implements KeyListener {
             Player.isMovingLeft = true;
             Player.isMovingRight = false;
         }
+        if (code == KeyEvent.VK_SPACE && !Player.inAir){
+            Player.gravity = -14;
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package GraphicHandler;
 
 import Game.Game;
+import Objects.BigPlatform;
 import Objects.Button;
 
 import java.awt.*;
@@ -22,6 +23,7 @@ public class Assets {
     public static void init() {
         startButton = new Button(startButtonX,startButtonY, ImageLoader.loadImage("/PlayButton.png"));
         exitButton = new Button(endButtonX,endButtonY, ImageLoader.loadImage("/ExitButton.png"));
+
         background = ImageLoader.loadImage("/background.png");
         gameLogo = ImageLoader.loadImage("/logo.png");
 

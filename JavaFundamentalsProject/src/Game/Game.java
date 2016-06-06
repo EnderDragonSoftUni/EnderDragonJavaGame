@@ -3,6 +3,7 @@ package Game;
 import Display.Window;
 import GraphicHandler.Assets;
 import GraphicHandler.InputHandler;
+import Objects.BigPlatform;
 import Objects.Player;
 import GraphicHandler.SpriteSheet;
 import Objects.Button;
@@ -24,6 +25,7 @@ public class Game extends Canvas implements Runnable {
     public boolean running = false;
     private Thread thread;
     private Player player;
+    private BigPlatform ground;
 
     private InputHandler inputHandler;
 
@@ -40,7 +42,8 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         Assets.init();
 
-        player = new Player(WIDTH / 2 - 60, 450);
+        player = new Player(WIDTH / 2 - 60, 100);
+        ground = new BigPlatform(-180, 400);
 
         menu = new Menu(this);
         this.addMouseListener(menu);
@@ -75,7 +78,7 @@ public class Game extends Canvas implements Runnable {
         while (running) {
             this.requestFocus();
             long lastTime = System.nanoTime();
-            double amountOfTicks = 10.0;
+            double amountOfTicks = 60.0;
             double ns = 1000000000 / amountOfTicks;
             double delta = 0;
             long timer = System.currentTimeMillis();
@@ -112,6 +115,7 @@ public class Game extends Canvas implements Runnable {
     private void tick() {
         if (gameState == STATE.Game) {
             player.tick();
+            ground.tick();
         } else if (gameState == STATE.Menu) {
             menu.tick();
         }
@@ -129,6 +133,7 @@ public class Game extends Canvas implements Runnable {
 
         if (gameState == STATE.Game) {
             player.render(g);
+            ground.render(g);
 
         } else if (gameState == Game.STATE.Menu || gameState == STATE.Credentials) {
             menu.render(g);
