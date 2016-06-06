@@ -22,13 +22,13 @@ public class Menu extends MouseAdapter {
 
         if (game.gameState == Game.STATE.Menu) {
             //Play Button
-            if (mouseOver(mx, my, Assets.startButtonX, Assets.startButtonY, 200, 50)) {
+            if (mouseOver(mx, my, Assets.startButtonX, Assets.startButtonY, 200, 80)) {
                 game.gameState = Game.STATE.Game;
                 return;
             }
 
             //Quit Button
-            if (mouseOver(mx, my, Assets.endButtonX, Assets.endButtonY, 200, 50)) {
+            if (mouseOver(mx, my, Assets.endButtonX, Assets.endButtonY, 200, 80)) {
                 System.exit(1);
             }
         }
@@ -62,13 +62,10 @@ public class Menu extends MouseAdapter {
     public void render(Graphics g) {
         if (game.gameState == Game.STATE.Menu) {
 
+            g.drawImage(Assets.gameLogo, Game.WIDTH / 3 - 80, 40, 380, 70, null);
             Assets.startButton.render(g);
             Assets.exitButton.render(g);
 
-            Font fnt = new Font("Georgia", Font.BOLD, 48);
-            g.setFont(fnt);
-            g.setColor(Color.green);
-            g.drawString("SoftUni Tower", Game.WIDTH / 3 - 60, 100);
         }
     }
 }

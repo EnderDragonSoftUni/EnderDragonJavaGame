@@ -20,6 +20,6 @@ public class Button {
     }
 
     public void render(Graphics g) {
-        g.drawImage(image, x, y, 200, 50, null);
+        g.drawImage(image, x, y, 200, 80, null);
     }
 }
