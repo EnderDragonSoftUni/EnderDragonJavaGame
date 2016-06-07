@@ -43,8 +43,8 @@ public class Game extends Canvas implements Runnable {
 
 
         platformHandler.addObject(new Platform(-180, 400, 1000, 80));
-        platformHandler.addObject(new Platform(100, 350, 200, 30));
-        platformHandler.addObject(new Platform(200, 250, 200, 30));
+        platformHandler.addObject(new Platform(100, 200, 200, 20));
+        platformHandler.addObject(new Platform(200, 0, 200, 20));
         player = new Player(WIDTH / 2 - 60, 100, 60, 70, platformHandler);
 
         menu = new Menu(this);

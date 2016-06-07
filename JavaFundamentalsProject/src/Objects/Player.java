@@ -2,6 +2,7 @@ package Objects;
 
 import Game.Game;
 import GraphicHandler.Assets;
+import GraphicHandler.InputHandler;
 import GraphicHandler.PlatformHandler;
 import GraphicHandler.SpriteSheet;
 
@@ -16,6 +17,7 @@ public class Player {
     private PlatformHandler platformHandler;
 
     public static boolean inAir = true;
+    public static boolean inJumpingBox = false;
     public static double gravity = 0;
     public static boolean isMovingLeft, isMovingRight;
 
@@ -35,6 +37,7 @@ public class Player {
     public Rectangle getBounds() {
         return new Rectangle(this.x, this.y, this.playerWidth, this.playerHeight);
     }
+    public Rectangle getBotBounds() {return new Rectangle(this.x, this.y+this.playerHeight*3/4, this.playerWidth, this.playerHeight/4);}
 
     public void tick() {
 
@@ -44,14 +47,20 @@ public class Player {
             x = this.cropWidth * -1;
         }
 
+//        y+=gravity;
 
-        if (collision() && gravity > 0) {
+        if (collision() && !InputHandler.jumped) {
+            y+=3;
             gravity = 0;
             inAir = false;
         } else {
-            this.y += this.gravity;
             inAir = true;
         }
+
+        this.y += this.gravity;
+        InputHandler.jumped = false;
+
+//        System.out.println(inAir);
 
         if (isMovingRight) {
             this.x += this.velocity;
@@ -60,7 +69,6 @@ public class Player {
             this.spriteCol %= 8;
         } else if (isMovingLeft) {
             this.x -= this.velocity;
-
             this.spriteRow = 1;
             this.spriteCol++;
             this.spriteCol %= 8;
@@ -68,23 +76,31 @@ public class Player {
             this.spriteCol = 0;
         }
 
-        this.gravity += 1.3;
-
+        if (inAir){
+            this.gravity += 2.2;
+        }
     }
 
     public void render(Graphics g) {
         g.drawImage(this.img.crop(this.spriteCol * this.cropWidth, this.spriteRow * this.cropHeight, this.cropWidth, this.cropHeight)
                 , this.x, this.y, this.playerWidth, this.playerHeight, null);
+//        g.setColor(Color.YELLOW);
+//        g.drawRect(getBotBounds().x,getBotBounds().y,getBotBounds().width,getBotBounds().height);
 
     }
 
     private boolean collision() {
         boolean collis = false;
-        for (int i = 0; i < this.platformHandler.object.size(); i++) {
-            Platform tempObject = this.platformHandler.object.get(i);
+        inJumpingBox = false;
+        for (int i = 0; i < this.platformHandler.objects.size(); i++) {
+            Platform tempObject = this.platformHandler.objects.get(i);
 
-            if (this.getBounds().intersects(tempObject.getBounds())) {
+            if (this.getBotBounds().intersects(tempObject.getTopBounds())) {
                 collis = true;
+                y = tempObject.getTopBounds().y-this.playerHeight+8;
+            }
+            if (this.getBotBounds().intersects(tempObject.getJumpingBounds())){
+                inJumpingBox = true;
             }
         }
 

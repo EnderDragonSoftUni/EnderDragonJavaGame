@@ -11,6 +11,7 @@ import java.awt.event.KeyListener;
  */
 public class InputHandler implements KeyListener {
 
+    public static boolean jumped = false;
     private boolean[] keyDown = new boolean[3];
 
     public InputHandler(Canvas canvas) {
@@ -36,9 +37,10 @@ public class InputHandler implements KeyListener {
             keyDown[1] = true;
             Player.isMovingLeft = true;
         }
-        if (code == KeyEvent.VK_SPACE && !Player.inAir){
+        if (code == KeyEvent.VK_SPACE && Player.inJumpingBox){
             keyDown[2] = true;
-            Player.gravity = -14;
+            Player.gravity = -22;
+            jumped = true;
         }
     }
 
