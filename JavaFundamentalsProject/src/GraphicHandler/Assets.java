@@ -1,10 +1,8 @@
 package GraphicHandler;
 
 import Game.Game;
-import Objects.BigPlatform;
 import Objects.Button;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Assets {

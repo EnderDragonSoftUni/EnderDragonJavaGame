@@ -2,6 +2,7 @@ package Objects;
 
 import Game.Game;
 import GraphicHandler.Assets;
+import GraphicHandler.PlatformHandler;
 import GraphicHandler.SpriteSheet;
 
 import java.awt.*;
@@ -12,14 +13,14 @@ public class Player {
     private int spriteRow = 0;
 
     private SpriteSheet img;
-    private Rectangle boundingBox;
+    private PlatformHandler platformHandler;
 
     public static boolean inAir = true;
     public static double gravity = 0;
     public static boolean isMovingLeft, isMovingRight;
 
 
-    public Player(int x, int y, int imgWidth, int imgHeight) {
+    public Player(int x, int y, int imgWidth, int imgHeight, PlatformHandler platformHandler) {
         this.x = x;
         this.y = y;
         this.playerWidth = imgWidth;
@@ -28,7 +29,11 @@ public class Player {
         this.cropWidth = 108;
         this.cropHeight = 140;
         this.img = Assets.player;
-        this.boundingBox = new Rectangle(this.x, this.y, this.playerWidth, this.playerHeight);
+        this.platformHandler = platformHandler;
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle(this.x, this.y, this.playerWidth, this.playerHeight);
     }
 
     public void tick() {
@@ -40,7 +45,7 @@ public class Player {
         }
 
 
-        if (boundingBox.intersects(BigPlatform.boundingBox) && gravity > 0) {
+        if (collision() && gravity > 0) {
             gravity = 0;
             inAir = false;
         } else {
@@ -50,7 +55,6 @@ public class Player {
 
         if (isMovingRight) {
             this.x += this.velocity;
-
             this.spriteRow = 0;
             this.spriteCol++;
             this.spriteCol %= 8;
@@ -64,16 +68,26 @@ public class Player {
             this.spriteCol = 0;
         }
 
-        if (this.gravity < 14) {
-            this.gravity += 0.5;
-        }
+        this.gravity += 1.3;
 
-        this.boundingBox.setBounds(this.x, this.y, this.playerWidth, this.playerHeight);
     }
 
     public void render(Graphics g) {
         g.drawImage(this.img.crop(this.spriteCol * this.cropWidth, this.spriteRow * this.cropHeight, this.cropWidth, this.cropHeight)
                 , this.x, this.y, this.playerWidth, this.playerHeight, null);
 
+    }
+
+    private boolean collision() {
+        boolean collis = false;
+        for (int i = 0; i < this.platformHandler.object.size(); i++) {
+            Platform tempObject = this.platformHandler.object.get(i);
+
+            if (this.getBounds().intersects(tempObject.getBounds())) {
+                collis = true;
+            }
+        }
+
+        return collis;
     }
 }
