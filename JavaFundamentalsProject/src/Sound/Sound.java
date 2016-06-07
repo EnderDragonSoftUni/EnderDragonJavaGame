@@ -22,8 +22,7 @@ public class Sound {
     private boolean playing = false;
 
     public Sound(File f) {
-        try {
-            AudioInputStream stream = AudioSystem.getAudioInputStream(f);
+        try (AudioInputStream stream = AudioSystem.getAudioInputStream(f)){
             clip = AudioSystem.getClip();
             clip.open(stream);
             clip.addLineListener(new Listener());
