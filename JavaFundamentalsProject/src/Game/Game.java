@@ -29,12 +29,11 @@ public class Game extends Canvas implements Runnable {
 
     private InputHandler inputHandler;
 
-
     public enum STATE {
         Menu,
         Game,
         Credentials,
-        End;
+        End
     }
 
     public static STATE gameState = STATE.Menu;
