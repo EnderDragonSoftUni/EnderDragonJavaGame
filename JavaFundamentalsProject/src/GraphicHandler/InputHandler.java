@@ -12,8 +12,13 @@ import java.awt.event.KeyListener;
  */
 public class InputHandler implements KeyListener {
 
+    private boolean[] keyDown = new boolean[3];
+
     public InputHandler(Canvas canvas) {
         canvas.addKeyListener(this);
+        this.keyDown[0] = false;
+        this.keyDown[1] = false;
+        this.keyDown[2] = false;
     }
 
     @Override
@@ -25,13 +30,15 @@ public class InputHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_RIGHT) {
+            keyDown[0] = true;
             Player.isMovingRight = true;
-            Player.isMovingLeft = false;
-        } else if (code == KeyEvent.VK_LEFT) {
+        }
+        if (code == KeyEvent.VK_LEFT) {
+            keyDown[1] = true;
             Player.isMovingLeft = true;
-            Player.isMovingRight = false;
         }
         if (code == KeyEvent.VK_SPACE && !Player.inAir){
+            keyDown[2] = true;
             Player.gravity = -14;
         }
     }
@@ -40,9 +47,14 @@ public class InputHandler implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_RIGHT) {
+            keyDown[0] = false;
             Player.isMovingRight = false;
+        }
+        if (code == KeyEvent.VK_LEFT) {
+            keyDown[1] = false;
             Player.isMovingLeft = false;
-        } else if (code == KeyEvent.VK_LEFT) {
+        }
+        if (!keyDown[0] && !keyDown[1]) {
             Player.isMovingLeft = false;
             Player.isMovingRight = false;
         }

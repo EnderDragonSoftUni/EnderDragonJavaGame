@@ -22,7 +22,8 @@ public class BigPlatform {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.BLACK);
+        Color myColour = new Color(0, 0, 0, 127);
+        g.setColor(myColour);
         g.fillRect(x, y, this.width, this.height);
     }
 }

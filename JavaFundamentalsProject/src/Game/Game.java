@@ -42,7 +42,7 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         Assets.init();
 
-        player = new Player(WIDTH / 2 - 60, 100);
+        player = new Player(WIDTH / 2 - 60, 100, 60, 70);
         ground = new BigPlatform(-180, 400);
 
         menu = new Menu(this);
