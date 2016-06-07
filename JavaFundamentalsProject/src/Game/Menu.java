@@ -3,10 +3,11 @@ package Game;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.logging.Handler;
 
 import GraphicHandler.Assets;
+import GraphicHandler.PlatformHandler;
 import Sound.Sound;
-
 
 
 /**
@@ -14,9 +15,10 @@ import Sound.Sound;
  */
 public class Menu extends MouseAdapter {
     private Game game;
+    private PlatformHandler platformHandler;
 
-    public Menu(Game game) {
-
+    public Menu(Game game, PlatformHandler platformHandler) {
+        this.platformHandler = platformHandler;
         this.game = game;
     }
 
@@ -25,9 +27,8 @@ public class Menu extends MouseAdapter {
         int my = e.getY();
 
         if (game.gameState == Game.STATE.Menu) {
+            //Sound.playSound("res/audio/gong.wav").join();
             //Play Button
-            //Sound.playSound("res/audio/gong.wav");
-            Sound.playSound("res/audio/gong.wav").join();
             if (mouseOver(mx, my, Assets.startButtonX, Assets.startButtonY, 200, 80)) {
                 game.gameState = Game.STATE.Game;
 
@@ -40,8 +41,11 @@ public class Menu extends MouseAdapter {
             }
         }
 
-        if (game.gameState == Game.STATE.Game) {
+        if (game.gameState == Game.STATE.End) {
+            if (mouseOver(mx, my, Assets.tryAgainButtonX, Assets.tryAgainButtonY, 200, 80)) {
+                Game.gameState = Game.STATE.Menu;
 
+            }
         }
 
     }
@@ -73,6 +77,9 @@ public class Menu extends MouseAdapter {
             Assets.startButton.render(g);
             Assets.exitButton.render(g);
 
+        } else if (Game.gameState == Game.STATE.End){
+            g.drawImage(Assets.gameOver, 170, 40, 320, 100, null);
+            Assets.tryAgainButton.render(g);
         }
     }
 }

@@ -18,6 +18,7 @@ public class Player {
 
     public static boolean inAir = true;
     public static boolean inJumpingBox = false;
+    public static boolean isDead = false;
     public static double gravity = 0;
     public static boolean isMovingLeft, isMovingRight;
 
@@ -37,9 +38,16 @@ public class Player {
     public Rectangle getBounds() {
         return new Rectangle(this.x, this.y, this.playerWidth, this.playerHeight);
     }
-    public Rectangle getBotBounds() {return new Rectangle(this.x, this.y+this.playerHeight*3/4, this.playerWidth, this.playerHeight/4);}
+
+    public Rectangle getBotBounds() {
+        return new Rectangle(this.x, this.y + this.playerHeight * 3 / 4, this.playerWidth, this.playerHeight / 4);
+    }
 
     public void tick() {
+        if (getBounds().intersects(new Rectangle(0, 475, 700, 60))){
+            Game.gameState = Game.STATE.End;
+            isDead = true;
+        }
 
         if (x < this.cropWidth * -1) {
             x = Game.WIDTH;
@@ -47,20 +55,15 @@ public class Player {
             x = this.cropWidth * -1;
         }
 
-//        y+=gravity;
-
         if (collision() && !InputHandler.jumped) {
-            y+=3;
+            y += 3;
             gravity = 0;
             inAir = false;
         } else {
             inAir = true;
         }
 
-        this.y += this.gravity;
         InputHandler.jumped = false;
-
-//        System.out.println(inAir);
 
         if (isMovingRight) {
             this.x += this.velocity;
@@ -75,8 +78,8 @@ public class Player {
         } else {
             this.spriteCol = 0;
         }
-
-        if (inAir){
+        this.y += this.gravity;
+        if (inAir) {
             this.gravity += 2.2;
         }
     }
@@ -97,13 +100,12 @@ public class Player {
 
             if (this.getBotBounds().intersects(tempObject.getTopBounds())) {
                 collis = true;
-                y = tempObject.getTopBounds().y-this.playerHeight+8;
+                y = tempObject.getTopBounds().y - this.playerHeight + 13;
             }
-            if (this.getBotBounds().intersects(tempObject.getJumpingBounds())){
+            if (this.getBotBounds().intersects(tempObject.getJumpingBounds())) {
                 inJumpingBox = true;
             }
         }
-
         return collis;
     }
 }

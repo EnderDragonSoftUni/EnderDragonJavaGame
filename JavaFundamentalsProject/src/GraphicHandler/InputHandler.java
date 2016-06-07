@@ -10,7 +10,7 @@ import java.awt.event.KeyListener;
  * Created by Niki on 6.6.2016 г..
  */
 public class InputHandler implements KeyListener {
-
+    public static boolean beginning = true;
     public static boolean jumped = false;
     private boolean[] keyDown = new boolean[3];
 
@@ -39,6 +39,7 @@ public class InputHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_SPACE && Player.inJumpingBox){
             keyDown[2] = true;
+            beginning = false;
             Player.gravity = -22;
             jumped = true;
         }

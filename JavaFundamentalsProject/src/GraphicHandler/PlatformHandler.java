@@ -11,23 +11,26 @@ import java.util.Random;
  * Created by Niki on 7.6.2016 г..
  */
 public class PlatformHandler {
-    public static  ArrayList<Platform> objects = new ArrayList<>();
+    public static ArrayList<Platform> objects = new ArrayList<>();
 
     private static Random rand;
     private static int timeBetweenPlatforms = 0;
 
-    public PlatformHandler(){
+    public PlatformHandler() {
         this.rand = new Random();
     }
 
     public void tick() {
 
-        if (timeBetweenPlatforms == 30){
-            timeBetweenPlatforms=0;
-            addRandomPlatform();
-        }else{
-            timeBetweenPlatforms++;
+        if (InputHandler.beginning == false) {
+            if (timeBetweenPlatforms >= 30) {
+                timeBetweenPlatforms = 0;
+                addRandomPlatform();
+            } else {
+                timeBetweenPlatforms++;
+            }
         }
+
         for (int i = 0; i < objects.size(); i++) {
             Platform tempObject = objects.get(i);
 
@@ -46,6 +49,10 @@ public class PlatformHandler {
 
         }
     }
+    
+    public static void  clearAllPlatforms(){
+        objects = new ArrayList<>();
+    }
 
     public static void addObject(Platform object) {
         objects.add(object);
@@ -56,18 +63,17 @@ public class PlatformHandler {
     }
 
     public static void addRandomPlatform() {
-        int tempWidth = rand.nextInt(200)+100;
-        int tempX = rand.nextInt(Game.WIDTH-tempWidth);
+        int tempWidth = rand.nextInt(200) + 100;
+        int tempX = rand.nextInt(Game.WIDTH - tempWidth);
         int tempY = -20;
-//        boolean intersects = false;
-//        for (Platform object : objects) {
-//            if (!object.getBounds().intersects(new Rectangle(tempX, tempY, tempWidth, 20))){
-//                intersects = true;
-//            }
-//        }
-//        if (!intersects){
-//            objects.add(new Platform(tempX,tempY,tempWidth,20));
-//        }
+
         objects.add(new Platform(tempX, tempY, tempWidth, 20));
+    }
+
+    public static void addStartingPlatforms() {
+        objects.add(new Platform(0, 400, 700, 60));
+        objects.add(new Platform(200, 270, 200, 20));
+        objects.add(new Platform(100, 120, 200, 20));
+        objects.add(new Platform(200, -20, 200, 20));
     }
 }

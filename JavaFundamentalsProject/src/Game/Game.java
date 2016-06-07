@@ -41,13 +41,10 @@ public class Game extends Canvas implements Runnable {
         Assets.init();
         platformHandler = new PlatformHandler();
 
+        platformHandler.addStartingPlatforms();
+        player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler);
 
-        platformHandler.addObject(new Platform(-180, 400, 1000, 80));
-        platformHandler.addObject(new Platform(100, 200, 200, 20));
-        platformHandler.addObject(new Platform(200, 0, 200, 20));
-        player = new Player(WIDTH / 2 - 60, 100, 60, 70, platformHandler);
-
-        menu = new Menu(this);
+        menu = new Menu(this, platformHandler);
         this.addMouseListener(menu);
         this.inputHandler = new InputHandler(this);
 
@@ -118,7 +115,14 @@ public class Game extends Canvas implements Runnable {
         if (gameState == STATE.Game) {
             player.tick();
             platformHandler.tick();
-        } else if (gameState == STATE.Menu) {
+            if (Player.isDead){
+                Player.isDead = false;
+                platformHandler.clearAllPlatforms();
+                platformHandler.addStartingPlatforms();
+                player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler);
+                InputHandler.beginning = true;
+            }
+        } else if (gameState == STATE.Menu || gameState == STATE.End) {
             menu.tick();
         }
     }
@@ -137,7 +141,7 @@ public class Game extends Canvas implements Runnable {
             player.render(g);
             platformHandler.render(g);
 
-        } else if (gameState == Game.STATE.Menu || gameState == STATE.Credentials) {
+        } else if (gameState == Game.STATE.Menu || gameState == STATE.End) {
             menu.render(g);
         }
 
