@@ -5,7 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import GraphicHandler.Assets;
-
+import Sound.Sound;
 
 
 
@@ -26,6 +26,8 @@ public class Menu extends MouseAdapter {
 
         if (game.gameState == Game.STATE.Menu) {
             //Play Button
+            //Sound.playSound("res/audio/gong.wav");
+            Sound.playSound("res/audio/gong.wav").join();
             if (mouseOver(mx, my, Assets.startButtonX, Assets.startButtonY, 200, 80)) {
                 game.gameState = Game.STATE.Game;
 
