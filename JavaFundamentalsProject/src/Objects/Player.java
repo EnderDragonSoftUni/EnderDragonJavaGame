@@ -2,6 +2,7 @@ package Objects;
 
 import Game.Game;
 import GraphicHandler.Assets;
+import GraphicHandler.GiftsHandler;
 import GraphicHandler.InputHandler;
 import GraphicHandler.PlatformHandler;
 import GraphicHandler.SpriteSheet;
@@ -15,6 +16,7 @@ public class Player {
 
     private SpriteSheet img;
     private PlatformHandler platformHandler;
+    private GiftsHandler giftsHandler;
 
     public static boolean inAir = true;
     public static boolean inJumpingBox = false;
@@ -23,7 +25,7 @@ public class Player {
     public static boolean isMovingLeft, isMovingRight;
 
 
-    public Player(int x, int y, int imgWidth, int imgHeight, PlatformHandler platformHandler) {
+    public Player(int x, int y, int imgWidth, int imgHeight, PlatformHandler platformHandler, GiftsHandler giftsHandler) {
         this.x = x;
         this.y = y;
         this.playerWidth = imgWidth;
@@ -33,6 +35,7 @@ public class Player {
         this.cropHeight = 140;
         this.img = Assets.player;
         this.platformHandler = platformHandler;
+        this.giftsHandler = giftsHandler;
     }
 
     public Rectangle getBounds() {
@@ -61,6 +64,11 @@ public class Player {
             inAir = false;
         } else {
             inAir = true;
+        }
+        
+        if (giftsCollision() ) {
+         
+            Game.score +=100;
         }
 
         InputHandler.jumped = false;
@@ -107,5 +115,20 @@ public class Player {
             }
         }
         return collis;
+    }
+    
+    private boolean giftsCollision() {
+         boolean giftsCollision = false;
+        for (int i = 0; i < this.giftsHandler.objects.size(); i++) {
+            Gifts tempObject = this.giftsHandler.objects.get(i);
+
+            if (this.getBotBounds().intersects(tempObject.getBounds())) {
+                giftsCollision = true;
+                this.giftsHandler.objects.remove(i);
+                //y = tempObject.getTopBounds().y - this.playerHeight + 13;
+            }
+            
+        }
+        return giftsCollision;
     }
 }
