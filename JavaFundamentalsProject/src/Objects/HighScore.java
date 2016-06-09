@@ -34,6 +34,4 @@ public class HighScore {
         g.drawString(score,25,50);
     }
 
-
-
 }
