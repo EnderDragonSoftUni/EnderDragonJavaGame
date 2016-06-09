@@ -10,7 +10,7 @@ import Objects.Player;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-
+import Objects.HighScore;
 /**
  * Created by Niki on 5.6.2016 г..
  */
@@ -19,8 +19,10 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 320 * SCALE;
     public static final int HEIGHT = WIDTH / 12 * 9;
     public static final String TITLE = "Icy Somethink";
+    public static  int score = 50;   //game Score
 
     private Menu menu;
+    private HighScore highScore;
     public boolean running = false;
     private Thread thread;
     private Player player;
@@ -45,6 +47,7 @@ public class Game extends Canvas implements Runnable {
         player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler);
 
         menu = new Menu(this, platformHandler);
+        highScore = new HighScore(score);
         this.addMouseListener(menu);
         this.inputHandler = new InputHandler(this);
 
@@ -115,6 +118,7 @@ public class Game extends Canvas implements Runnable {
         if (gameState == STATE.Game) {
             player.tick();
             platformHandler.tick();
+            highScore.tick(score--);   //testing score
             if (Player.isDead){
                 Player.isDead = false;
                 platformHandler.clearAllPlatforms();
@@ -140,9 +144,11 @@ public class Game extends Canvas implements Runnable {
         if (gameState == STATE.Game) {
             player.render(g);
             platformHandler.render(g);
+            highScore.render(g);
 
         } else if (gameState == Game.STATE.Menu || gameState == STATE.End) {
             menu.render(g);
+            score = 50;
         }
 
         g.dispose();
