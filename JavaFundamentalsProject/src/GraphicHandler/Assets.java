@@ -38,8 +38,8 @@ public class Assets {
 
         background = ImageLoader.loadImage("/background.png");
         gameLogo = ImageLoader.loadImage("/logo.png");
-        gameOver = ImageLoader.loadImage("/GameOver.png");
-        iceberg = ImageLoader.loadImage("/iceberg.png");
+        gameOver = ImageLoader.loadImage("/gameover.png");
+        iceberg = ImageLoader.loadImage("/Iceberg.png");
 
         player = new SpriteSheet(ImageLoader.loadImage("/sprite.png"));
     }
