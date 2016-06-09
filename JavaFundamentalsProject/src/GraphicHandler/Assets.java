@@ -26,8 +26,10 @@ public class Assets {
     public static BufferedImage gameLogo;
     public static BufferedImage gameOver;
     public static BufferedImage iceberg;
+    
 
     public static SpriteSheet player;
+    public static SpriteSheet giftsImg;
 
 
     public static void init() {
@@ -42,5 +44,6 @@ public class Assets {
         iceberg = ImageLoader.loadImage("/Iceberg.png");
 
         player = new SpriteSheet(ImageLoader.loadImage("/sprite.png"));
+         giftsImg = new SpriteSheet(ImageLoader.loadImage("/glow_orange.png"));
     }
 }
