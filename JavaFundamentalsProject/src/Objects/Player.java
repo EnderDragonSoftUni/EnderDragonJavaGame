@@ -17,6 +17,7 @@ public class Player {
     private SpriteSheet img;
     private PlatformHandler platformHandler;
     private GiftsHandler giftsHandler;
+    private ProgressBar progressBar;
 
     public static boolean inAir = true;
     public static boolean inJumpingBox = false;
@@ -25,7 +26,7 @@ public class Player {
     public static boolean isMovingLeft, isMovingRight;
 
 
-    public Player(int x, int y, int imgWidth, int imgHeight, PlatformHandler platformHandler, GiftsHandler giftsHandler) {
+    public Player(int x, int y, int imgWidth, int imgHeight, PlatformHandler platformHandler, GiftsHandler giftsHandler, ProgressBar progressBar) {
         this.x = x;
         this.y = y;
         this.playerWidth = imgWidth;
@@ -36,6 +37,7 @@ public class Player {
         this.img = Assets.player;
         this.platformHandler = platformHandler;
         this.giftsHandler = giftsHandler;
+        this.progressBar = progressBar;
     }
 
     public Rectangle getBounds() {
@@ -69,6 +71,7 @@ public class Player {
         if (giftsCollision() ) {
          
             Game.score +=100;
+            progressBar.setProgress(true);
         }
 
         InputHandler.jumped = false;
