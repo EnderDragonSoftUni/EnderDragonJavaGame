@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="res">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/JavaFundamentalsProject/res" />
+      <root url="file://$PROJECT_DIR$/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
