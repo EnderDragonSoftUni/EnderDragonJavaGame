@@ -16,7 +16,7 @@ public class Window extends Canvas {
         frame.setMinimumSize(new Dimension(width, height));
         frame.add(game);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setIconImage(new ImageIcon(Window.class.getResource("/bottle.png")).getImage());
+        frame.setIconImage(new ImageIcon(Window.class.getResource("/bottle.png")).getImage());
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setVisible(true);
