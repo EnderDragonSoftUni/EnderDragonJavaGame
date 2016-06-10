@@ -12,6 +12,7 @@ import Objects.Player;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import Objects.HighScore;
+import Objects.ProgressBar;
 
 /**
  * Created by Niki on 5.6.2016 г..
@@ -31,6 +32,7 @@ public class Game extends Canvas implements Runnable {
     private Player player;
     private PlatformHandler platformHandler;
     private GiftsHandler giftsHandler;
+    private ProgressBar progressBar;
     
 
     private InputHandler inputHandler;
@@ -57,10 +59,11 @@ public class Game extends Canvas implements Runnable {
         platformHandler = new PlatformHandler();
         giftsHandler = new GiftsHandler();
          highScore = new HighScore(score);
+         progressBar = new ProgressBar(this);
 
         platformHandler.addStartingPlatforms();
         giftsHandler.addStartingGifts();
-        player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler, giftsHandler);
+        player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler, giftsHandler, progressBar);
 
         menu = new Menu(this, platformHandler);
         this.addMouseListener(menu);
@@ -135,13 +138,17 @@ public class Game extends Canvas implements Runnable {
             player.tick();
             platformHandler.tick();
             giftsHandler.tick();
+             progressBar.tick();
+             highScore.tick(score);
             if (Player.isDead){
                 Player.isDead = false;
                 platformHandler.clearAllPlatforms();
                 platformHandler.addStartingPlatforms();
                 giftsHandler.clearAllGifts();
                 giftsHandler.addStartingGifts();
-                player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler, giftsHandler);
+                progressBar.setFillProgressBar(0);
+               
+                player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler, giftsHandler, progressBar);
                 InputHandler.beginning = true;
             }
         } else if (gameState == STATE.Menu || gameState == STATE.End) {
@@ -164,16 +171,10 @@ public class Game extends Canvas implements Runnable {
             platformHandler.render(g);
             giftsHandler.render(g);
              highScore.render(g);
+             progressBar.render(g);
 
             
-            String s = "Score : " + Integer.toString(score);
-             g.setColor(Color.BLACK);
-        //shadow Efect
-            Font font = new Font("Serif", Font.BOLD, 24);
-              g.setFont(font);
-             g.drawString(s, getWidth() - 170+3, 50+3);
-             g.setColor(new Color(198,226,255));
-             g.drawString(s, getWidth() - 170, 50);
+          
 
         } else if (gameState == Game.STATE.Menu || gameState == STATE.End) {
             this.score = 0;
