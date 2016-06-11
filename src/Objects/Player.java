@@ -24,16 +24,23 @@ public class Player {
     public static boolean isDead = false;
     public static double gravity = 0;
     public static boolean isMovingLeft, isMovingRight;
+    public static final int CROPWIDTH = 108;
+    public static final int THISVELOCITY = 15;
+    public static final int CROPHEIGHT = 140;
 
 
+
+    public static final int VELOCITY = 15;
     public Player(int x, int y, int imgWidth, int imgHeight, PlatformHandler platformHandler, GiftHandler giftsHandler, ProgressBar progressBar) {
         this.x = x;
         this.y = y;
         this.playerWidth = imgWidth;
         this.playerHeight = imgHeight;
-        this.velocity = 15;
-        this.cropWidth = 108;
-        this.cropHeight = 140;
+
+
+        this.velocity = THISVELOCITY;
+        this.cropWidth = CROPWIDTH;
+        this.cropHeight = CROPHEIGHT;
         this.img = Assets.player;
         this.platformHandler = platformHandler;
         this.giftsHandler = giftsHandler;
