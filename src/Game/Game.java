@@ -21,7 +21,7 @@ public class Game extends Canvas implements Runnable {
     public static final int SCALE = 2;
     public static final int WIDTH = 320 * SCALE;
     public static final int HEIGHT = WIDTH / 12 * 9;
-    public static final String TITLE = "Icy Somethink";
+    public static final String TITLE = "Icy Tower+";
     public static int score = 0;
 
 
