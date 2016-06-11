@@ -23,6 +23,7 @@ public class Game extends Canvas implements Runnable {
     public static final int HEIGHT = WIDTH / 12 * 9;
     public static final String TITLE = "Icy Tower+";
     public static int score = 0;
+    public static Score currentScore;
 
 
     private Menu menu;
@@ -33,6 +34,8 @@ public class Game extends Canvas implements Runnable {
     private PlatformHandler platformHandler;
     private GiftHandler giftHandler;
     private ProgressBar progressBar;
+
+
 
 
     private InputHandler inputHandler;
@@ -142,6 +145,9 @@ public class Game extends Canvas implements Runnable {
             progressBar.tick();
             highScore.tick(score);
             if (Player.isDead) {
+                currentScore= new Score(score);
+                currentScore.save();
+                currentScore.getTop3();
                 Game.gameState = Game.STATE.End;
                 Player.isDead = false;
                 platformHandler.clearAllPlatforms();
@@ -153,7 +159,7 @@ public class Game extends Canvas implements Runnable {
                 player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler, giftHandler, progressBar);
                 InputHandler.beginning = true;
             }
-        } else if (gameState == STATE.Menu || gameState == STATE.End) {
+        } else if (gameState == STATE.Menu) {
             menu.tick();
         }
     }
@@ -176,9 +182,13 @@ public class Game extends Canvas implements Runnable {
             progressBar.render(g);
 
 
-        } else if (gameState == Game.STATE.Menu || gameState == STATE.End) {
+        } else if (gameState == Game.STATE.Menu ) {
             this.score = 0;
             menu.render(g);
+        } else if (gameState == STATE.End){
+            this.score=0;
+            menu.render(g);
+            currentScore.render(g);
         }
 
         g.dispose();

@@ -26,6 +26,7 @@ public class Assets {
     public static BufferedImage gameLogo;
     public static BufferedImage gameOver;
     public static BufferedImage iceberg;
+    public static BufferedImage hiscore;
 
 
     public static SpriteSheet player;
@@ -42,6 +43,7 @@ public class Assets {
         gameLogo = ImageLoader.loadImage("/logo.png");
         gameOver = ImageLoader.loadImage("/gameover.png");
         iceberg = ImageLoader.loadImage("/Iceberg.png");
+        hiscore=ImageLoader.loadImage("/hiscore-logo.png");
 
         player = new SpriteSheet(ImageLoader.loadImage("/sprite.png"));
         giftsImg = new SpriteSheet(ImageLoader.loadImage("/glow_orange.png"));
