@@ -82,6 +82,12 @@ public class Score {
             e.printStackTrace();
         }
     }
+    
+    public static void tick(Score score){
+
+    score.save();
+    score.getTop3();
+}
 
     public void render(Graphics g) {
         g.setColor(Color.DARK_GRAY);
