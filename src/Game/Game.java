@@ -1,5 +1,6 @@
 package Game;
 
+import Display.NameBox;
 import Display.Window;
 import GraphicHandler.Assets;
 import GraphicHandler.InputHandler;
@@ -74,6 +75,7 @@ public class Game extends Canvas implements Runnable {
         this.inputHandler = new InputHandler(this);
 
         new Window(WIDTH, HEIGHT, TITLE, this);
+        new NameBox();
     }
 
     public synchronized void start() {
@@ -100,7 +102,6 @@ public class Game extends Canvas implements Runnable {
 
     public void run() {
         while (running) {
-            this.requestFocus();
             long lastTime = System.nanoTime();
             double amountOfTicks = 20.0;
             double ns = 1000000000 / amountOfTicks;
