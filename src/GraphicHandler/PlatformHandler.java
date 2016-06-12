@@ -63,17 +63,17 @@ public class PlatformHandler {
     }
 
     public static void addRandomPlatform() {
-        int tempWidth = rand.nextInt(200) + 100;
-        int tempX = rand.nextInt(Game.WIDTH - tempWidth);
+        int tempLength = rand.nextInt(3) + 3;
+        int tempX = rand.nextInt(Game.WIDTH - tempLength*64);
         int tempY = -20;
 
-        objects.add(new Platform(tempX, tempY, tempWidth, 20));
+        objects.add(new Platform(tempX, tempY, tempLength, 20));
     }
 
     public static void addStartingPlatforms() {
-        objects.add(new Platform(0, 400, 700, 60));
-        objects.add(new Platform(200, 270, 200, 20));
-        objects.add(new Platform(100, 120, 200, 20));
-        objects.add(new Platform(200, -20, 200, 20));
+        objects.add(new Platform(0, 400, Game.WIDTH/64, 60));
+        objects.add(new Platform(200, 270, 4, 20));
+        objects.add(new Platform(100, 120, 5, 20));
+        objects.add(new Platform(200, -20, 4, 20));
     }
 }

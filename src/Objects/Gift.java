@@ -46,7 +46,7 @@ public class Gift {
             frame = 0;
         }
         if (InputHandler.beginning == false) {
-            y += 6;
+            y += 8;
         }
         if (this.y > Game.HEIGHT) {
             GiftHandler.removeObject(this);
@@ -60,7 +60,5 @@ public class Gift {
         g.setColor(myColour);
         g.fillRect(x,y,this.width,this.height);
         g.drawImage(  this.img.crop( 32* (int)frame, 32* (int)frame, 32, 32), this.x , this.y ,  32, 32  ,null);
-
     }
-
 }

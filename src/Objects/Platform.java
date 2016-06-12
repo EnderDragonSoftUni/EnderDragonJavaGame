@@ -13,33 +13,22 @@ import java.util.Random;
 public class Platform {
     private int x;
     private int y;
-    private int width;
     private int height;
     private BufferedImage img;
-    private Game game;
+    private int length;
 
-    public Platform(int x, int y, int width, int height) {
+    public Platform(int x, int y, int length, int height) {
         this.x = x;
         this.y = y;
-        this.width = width;
+        this.length = length;
         this.height = height;
         this.img = Assets.iceberg;
     }
-
-    public Rectangle getBounds() {
-        return new Rectangle(this.x, this.y, this.width, this.height);
-    }
-
     public Rectangle getTopBounds() {
-        return new Rectangle(this.x, this.y, this.width, 10);
+        return new Rectangle(this.x, this.y, this.length*64, 10);
     }
-
-    public Rectangle getBotBounds() {
-        return new Rectangle(this.x, this.y + this.height - 10, this.width, 10);
-    }
-
     public Rectangle getJumpingBounds() {
-        return new Rectangle(this.x, this.y - 20, this.width, this.height + 20);
+        return new Rectangle(this.x, this.y - 20, this.length*64, this.height + 20);
     }
 
     public void tick() {
@@ -52,10 +41,9 @@ public class Platform {
     }
 
     public void render(Graphics g) {
-        /*Color myColour = new Color(0, 0, 0, 127);
-        g.setColor(myColour);*/
-        g.fillRect(x, y, this.width, this.height);
-        g.drawImage(img,x, y, this.width, this.height,game);
+        for (int i = 0; i < length; i++) {
+            g.drawImage(img,x+i*64, y, 64, this.height, null);
+        }
     }
 
 }

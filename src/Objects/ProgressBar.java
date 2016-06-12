@@ -42,7 +42,7 @@ public class ProgressBar {
     public void tick() {
 
         if (progress) {
-            fillProgressBar += 26;
+            fillProgressBar += 13;
         }
         if (fillProgressBar >= WIDTH) {
             Player.isDead = true;

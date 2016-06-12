@@ -63,9 +63,8 @@ public class GiftHandler {
     public static void addRandomGifts() {
         int tempWidth = rand.nextInt(200);
         int tempX = rand.nextInt(Game.WIDTH - tempWidth);
-        int tempY = rand.nextInt(200);
 
-        objects.add(new Gift(tempX, tempY, 32, 32));
+        objects.add(new Gift(tempX, -50, 32, 32));
     }
 
     public static void addStartingGifts() {

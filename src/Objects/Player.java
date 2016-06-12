@@ -8,6 +8,7 @@ import GraphicHandler.SpriteSheet;
 import GraphicHandler.GiftHandler;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Player {
     private int x, y, cropWidth, cropHeight, velocity, playerWidth, playerHeight;
@@ -18,6 +19,7 @@ public class Player {
     private PlatformHandler platformHandler;
     private GiftHandler giftsHandler;
     private ProgressBar progressBar;
+    private Random rand = new Random();
 
     public static boolean inAir = true;
     public static boolean inJumpingBox = false;
@@ -76,7 +78,7 @@ public class Player {
         
         if (giftsCollision() ) {
          
-            Game.score +=100;
+            Game.score += 100*this.y/250;
             progressBar.setProgress(true);
         }
 
@@ -131,7 +133,7 @@ public class Player {
         for (int i = 0; i < this.giftsHandler.objects.size(); i++) {
             Gift tempObject = this.giftsHandler.objects.get(i);
 
-            if (this.getBotBounds().intersects(tempObject.getBounds())) {
+            if (this.getBounds().intersects(tempObject.getBounds())) {
                 giftsCollision = true;
                 this.giftsHandler.objects.remove(i);
                 //y = tempObject.getTopBounds().y - this.playerHeight + 13;
