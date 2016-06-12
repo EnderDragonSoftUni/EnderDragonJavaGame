@@ -27,7 +27,7 @@ public class Menu extends MouseAdapter {
         int my = e.getY();
 
         if (game.gameState == Game.STATE.Menu) {
-            //Sound.playSound("res/audio/gong.wav").join();
+            //Sound.playSound("res/audio/WOW.wav");
             //Play Button
             if (mouseOver(mx, my, Assets.startButtonX, Assets.startButtonY, 200, 80)) {
                 game.gameState = Game.STATE.Game;

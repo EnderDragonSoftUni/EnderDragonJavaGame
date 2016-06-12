@@ -6,7 +6,7 @@ import GraphicHandler.InputHandler;
 import GraphicHandler.PlatformHandler;
 import GraphicHandler.SpriteSheet;
 import GraphicHandler.GiftHandler;
-
+import Sound.Sound;
 import java.awt.*;
 import java.util.Random;
 
@@ -31,8 +31,8 @@ public class Player {
     public static final int CROPHEIGHT = 140;
 
 
-
     public static final int VELOCITY = 15;
+
     public Player(int x, int y, int imgWidth, int imgHeight, PlatformHandler platformHandler, GiftHandler giftsHandler, ProgressBar progressBar) {
         this.x = x;
         this.y = y;
@@ -58,7 +58,7 @@ public class Player {
     }
 
     public void tick() {
-        if (getBounds().intersects(new Rectangle(0, 475, 700, 60))){
+        if (getBounds().intersects(new Rectangle(0, 475, 700, 60))) {
             isDead = true;
         }
 
@@ -75,10 +75,11 @@ public class Player {
         } else {
             inAir = true;
         }
-        
-        if (giftsCollision() ) {
-         
-            Game.score += 100*this.y/250;
+
+        if (giftsCollision()) {
+           // Sound.playSound("res/audio/WOW.wav");
+
+            Game.score += 100 * this.y / 250;
             progressBar.setProgress(true);
         }
 
@@ -127,9 +128,9 @@ public class Player {
         }
         return collis;
     }
-    
+
     private boolean giftsCollision() {
-         boolean giftsCollision = false;
+        boolean giftsCollision = false;
         for (int i = 0; i < this.giftsHandler.objects.size(); i++) {
             Gift tempObject = this.giftsHandler.objects.get(i);
 
@@ -138,7 +139,7 @@ public class Player {
                 this.giftsHandler.objects.remove(i);
                 //y = tempObject.getTopBounds().y - this.playerHeight + 13;
             }
-            
+
         }
         return giftsCollision;
     }
