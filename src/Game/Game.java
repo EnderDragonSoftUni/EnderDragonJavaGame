@@ -147,8 +147,9 @@ public class Game extends Canvas implements Runnable {
             highScore.tick(score);
             if (Player.isDead) {
                 currentScore= new Score(score);
-                currentScore.save();
-                currentScore.getTop3();
+                //currentScore.save();
+                //currentScore.getTop3();
+                Score.tick(currentScore);
                 Game.gameState = Game.STATE.End;
                 Player.isDead = false;
                 platformHandler.clearAllPlatforms();
