@@ -7,10 +7,10 @@ import java.awt.Graphics;
 
 public class ProgressBar {
 
-    private int x = 360;
-    private int y = 25;
-    private final int WIDTH = 260;
-    private final int HEIGHT = 30;
+    private int x = 0;
+    private int y = 440;
+    private final int WIDTH = Game.WIDTH;
+    private final int HEIGHT = 100;
     private int fillProgressBar = 0;
     private boolean progress = false;
     private Game game;
@@ -42,7 +42,7 @@ public class ProgressBar {
     public void tick() {
 
         if (progress) {
-            fillProgressBar += 13;
+            fillProgressBar += 30;
         }
         if (fillProgressBar >= WIDTH) {
             Player.isDead = true;
@@ -53,8 +53,6 @@ public class ProgressBar {
 
     public void render(Graphics g) {
         g.setColor(Color.BLACK);
-        g.fillRect(x + 3, y + 3, WIDTH, HEIGHT);
-        g.setColor(Color.GRAY);
         g.fillRect(x, y, WIDTH, HEIGHT);
         g.setColor(Color.RED);
         g.fillRect(x, y, 0 + fillProgressBar, HEIGHT);

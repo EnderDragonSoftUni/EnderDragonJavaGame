@@ -25,7 +25,7 @@ public class Platform {
         this.img = Assets.iceberg;
     }
     public Rectangle getTopBounds() {
-        return new Rectangle(this.x, this.y, this.length*64, 10);
+        return new Rectangle(this.x+15, this.y, this.length*64-30, 10);
     }
     public Rectangle getJumpingBounds() {
         return new Rectangle(this.x, this.y - 20, this.length*64, this.height + 20);
