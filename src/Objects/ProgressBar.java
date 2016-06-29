@@ -1,9 +1,9 @@
 package Objects;
 
 import Game.Game;
+import GraphicHandler.LevelHandler;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class ProgressBar {
 
@@ -42,10 +42,11 @@ public class ProgressBar {
     public void tick() {
 
         if (progress) {
-            fillProgressBar += 30;
+            fillProgressBar += 60;
         }
         if (fillProgressBar >= WIDTH) {
-            Player.isDead = true;
+            LevelHandler.nextLevel();
+            fillProgressBar = 0;
         }
         progress = false;
 
@@ -55,6 +56,6 @@ public class ProgressBar {
         g.setColor(Color.BLACK);
         g.fillRect(x, y, WIDTH, HEIGHT);
         g.setColor(Color.RED);
-        g.fillRect(x, y, 0 + fillProgressBar, HEIGHT);
+        g.fillRect(x, y, fillProgressBar, HEIGHT);
     }
 }

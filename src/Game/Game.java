@@ -2,23 +2,19 @@ package Game;
 
 import Display.NameBox;
 import Display.Window;
-import GraphicHandler.Assets;
-import GraphicHandler.InputHandler;
-import GraphicHandler.PlatformHandler;
+import GraphicHandler.*;
+import Objects.HighScore;
 import Objects.Player;
-import GraphicHandler.GiftHandler;
-
+import Objects.ProgressBar;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-
-import Objects.HighScore;
-import Objects.ProgressBar;
 
 /**
  * Created by Niki on 5.6.2016 г..
  */
 public class Game extends Canvas implements Runnable {
+
     public static final int SCALE = 2;
     public static final int WIDTH = 320 * SCALE;
     public static final int HEIGHT = WIDTH / 12 * 9;
@@ -35,10 +31,7 @@ public class Game extends Canvas implements Runnable {
     private PlatformHandler platformHandler;
     private GiftHandler giftHandler;
     private ProgressBar progressBar;
-
-
-
-
+    private LevelHandler levelHandler;
     private InputHandler inputHandler;
 
 
@@ -61,10 +54,11 @@ public class Game extends Canvas implements Runnable {
 
     public Game() {
         Assets.init();
-        platformHandler = new PlatformHandler();
-        giftHandler = new GiftHandler();
-        highScore = new HighScore(score);
-        progressBar = new ProgressBar(this);
+        this.platformHandler = new PlatformHandler();
+        this.giftHandler = new GiftHandler();
+        this.highScore = new HighScore(score);
+        this.progressBar = new ProgressBar(this);
+        this.levelHandler = new LevelHandler(this.platformHandler, this.giftHandler);
 
         platformHandler.addStartingPlatforms();
         giftHandler.addStartingGifts();
@@ -146,17 +140,18 @@ public class Game extends Canvas implements Runnable {
             progressBar.tick();
             highScore.tick(score);
             if (Player.isDead) {
-                currentScore= new Score(score);
+                currentScore = new Score(score);
                 //currentScore.save();
                 //currentScore.getTop3();
                 Score.tick(currentScore);
                 Game.gameState = Game.STATE.End;
                 Player.isDead = false;
-                platformHandler.clearAllPlatforms();
-                platformHandler.addStartingPlatforms();
-                giftHandler.clearAllGifts();
-                giftHandler.addStartingGifts();
+                PlatformHandler.clearAllPlatforms();
+                PlatformHandler.addStartingPlatforms();
+                GiftHandler.clearAllGifts();
+                GiftHandler.addStartingGifts();
                 progressBar.setFillProgressBar(0);
+                LevelHandler.setCurrentLevel(1);
 
                 player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler, giftHandler, progressBar);
                 InputHandler.beginning = true;
@@ -174,7 +169,11 @@ public class Game extends Canvas implements Runnable {
         }
         Graphics g = bs.getDrawGraphics();
 
-        g.drawImage(Assets.background, 0, 0, WIDTH, HEIGHT, null);
+        if (gameState == STATE.Game || gameState == STATE.End) {
+            levelHandler.render(g);
+        } else {
+            g.drawImage(Assets.background, 0, 0, Game.WIDTH, Game.HEIGHT, null);
+        }
 
         if (gameState == STATE.Game) {
             player.render(g);
@@ -184,11 +183,11 @@ public class Game extends Canvas implements Runnable {
             progressBar.render(g);
 
 
-        } else if (gameState == Game.STATE.Menu ) {
+        } else if (gameState == Game.STATE.Menu) {
             this.score = 0;
             menu.render(g);
-        } else if (gameState == STATE.End){
-            this.score=0;
+        } else if (gameState == STATE.End) {
+            this.score = 0;
             menu.render(g);
             currentScore.render(g);
         }

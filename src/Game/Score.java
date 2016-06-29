@@ -1,15 +1,16 @@
 package Game;
 
 import Display.NameBox;
-import GraphicHandler.Assets;
 
 import java.awt.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.nio.file.StandardOpenOption.APPEND;
 import static java.nio.file.StandardOpenOption.CREATE;
@@ -26,7 +27,7 @@ public class Score {
     private int textY = highScoreY + 50;
     private final int WIDTH = 370;
     private final int HEIGHT = 150;
-    private Font font = new Font("Serif", Font.BOLD, 20);
+    private Font font = new Font("Calibri", Font.BOLD, 20);
     public static List<String> topList = new ArrayList<>();
 
     public Score(long score) {

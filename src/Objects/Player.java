@@ -1,52 +1,49 @@
 package Objects;
 
 import Game.Game;
-import GraphicHandler.Assets;
-import GraphicHandler.InputHandler;
-import GraphicHandler.PlatformHandler;
-import GraphicHandler.SpriteSheet;
-import GraphicHandler.GiftHandler;
-import Sound.Sound;
+import GraphicHandler.*;
+
 import java.awt.*;
 import java.util.Random;
 
 public class Player {
     private int x, y, cropWidth, cropHeight, velocity, playerWidth, playerHeight;
-    private int spriteCol = 0;
-    private int spriteRow = 0;
+    private int spriteCol;
+    private int spriteRow;
 
-    private SpriteSheet img;
     private PlatformHandler platformHandler;
-    private GiftHandler giftsHandler;
+    private GiftHandler giftHandler;
     private ProgressBar progressBar;
-    private Random rand = new Random();
+    private Random rand;
 
+    private static SpriteSheet img = Assets.player;
     public static boolean inAir = true;
     public static boolean inJumpingBox = false;
     public static boolean isDead = false;
     public static double gravity = 0;
     public static boolean isMovingLeft, isMovingRight;
-    public static final int CROPWIDTH = 108;
     public static final int THISVELOCITY = 15;
+    public static final int CROPWIDTH = 108;
     public static final int CROPHEIGHT = 140;
 
 
     public static final int VELOCITY = 15;
 
-    public Player(int x, int y, int imgWidth, int imgHeight, PlatformHandler platformHandler, GiftHandler giftsHandler, ProgressBar progressBar) {
+    public Player(int x, int y, int imgWidth, int imgHeight, PlatformHandler platformHandler, GiftHandler giftHandler, ProgressBar progressBar) {
         this.x = x;
         this.y = y;
         this.playerWidth = imgWidth;
         this.playerHeight = imgHeight;
 
-
         this.velocity = THISVELOCITY;
         this.cropWidth = CROPWIDTH;
         this.cropHeight = CROPHEIGHT;
-        this.img = Assets.player;
         this.platformHandler = platformHandler;
-        this.giftsHandler = giftsHandler;
+        this.giftHandler = giftHandler;
         this.progressBar = progressBar;
+        this.rand = new Random();
+        this.spriteCol = 0;
+        this.spriteRow = 0;
     }
 
     public Rectangle getBounds() {
@@ -68,7 +65,7 @@ public class Player {
             x = this.cropWidth * -1;
         }
 
-        if (collision() && !InputHandler.jumped) {
+        if (hasCollision() && !InputHandler.jumped) {
             y += 3;
             gravity = 0;
             inAir = false;
@@ -98,25 +95,25 @@ public class Player {
         } else {
             this.spriteCol = 0;
         }
-        this.y += this.gravity;
+        this.y += gravity;
         if (inAir) {
-            this.gravity += 2.2;
+            gravity += 2.2;
         }
     }
 
     public void render(Graphics g) {
-        g.drawImage(this.img.crop(this.spriteCol * this.cropWidth, this.spriteRow * this.cropHeight, this.cropWidth, this.cropHeight)
+        g.drawImage(img.crop(this.spriteCol * this.cropWidth, this.spriteRow * this.cropHeight, this.cropWidth, this.cropHeight)
                 , this.x, this.y, this.playerWidth, this.playerHeight, null);
 //        g.setColor(Color.YELLOW);
 //        g.drawRect(getBotBounds().x,getBotBounds().y,getBotBounds().width,getBotBounds().height);
 
     }
 
-    private boolean collision() {
+    private boolean hasCollision() {
         boolean collis = false;
         inJumpingBox = false;
-        for (int i = 0; i < this.platformHandler.objects.size(); i++) {
-            Platform tempObject = this.platformHandler.objects.get(i);
+        for (int i = 0; i < PlatformHandler.objects.size(); i++) {
+            Platform tempObject = PlatformHandler.objects.get(i);
 
             if (this.getBotBounds().intersects(tempObject.getTopBounds())) {
                 collis = true;
@@ -131,12 +128,12 @@ public class Player {
 
     private boolean giftsCollision() {
         boolean giftsCollision = false;
-        for (int i = 0; i < this.giftsHandler.objects.size(); i++) {
-            Gift tempObject = this.giftsHandler.objects.get(i);
+        for (int i = 0; i < GiftHandler.objects.size(); i++) {
+            Gift tempObject = GiftHandler.objects.get(i);
 
             if (this.getBounds().intersects(tempObject.getBounds())) {
                 giftsCollision = true;
-                this.giftsHandler.objects.remove(i);
+                GiftHandler.objects.remove(i);
                 //y = tempObject.getTopBounds().y - this.playerHeight + 13;
             }
 
