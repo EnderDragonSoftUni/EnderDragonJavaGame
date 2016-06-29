@@ -1,5 +1,7 @@
 package Objects;
 
+import GraphicHandler.LevelHandler;
+
 import java.awt.*;
 
 /**
@@ -23,8 +25,8 @@ public class HighScore {
 
     public void render(Graphics g) {
         g.setFont(font);
-        g.setColor(Color.black);
-        g.drawString(score, 25, 50);
+        g.setColor(Color.green);
+        g.drawString(String.format("Level: %d | Score: %s", LevelHandler.getCurrentLevel(), score), 125, 30);
     }
 
 }

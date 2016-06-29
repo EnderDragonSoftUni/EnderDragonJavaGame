@@ -20,7 +20,7 @@ public class LevelHandler {
         this.giftHandler = giftHandler;
     }
 
-    public int getCurrentLevel() {
+    public static int getCurrentLevel() {
         return currentLevel;
     }
 
@@ -35,7 +35,7 @@ public class LevelHandler {
     public void tick() {
         if (this.currentLevel == 1) {
             Platform.setImg(Assets.iceberg);
-        }else if (this.currentLevel == 1){
+        }else if (currentLevel == 1){
 
             Platform.setImg(Assets.iceberg);
         } else {
@@ -44,9 +44,9 @@ public class LevelHandler {
     }
 
     public void render(Graphics g) {
-        if (this.currentLevel == 1) {
+        if (currentLevel == 1) {
             g.drawImage(Assets.background, 0, 0, Game.WIDTH, Game.WIDTH, null);
-        } else if (this.getCurrentLevel() == 2) {
+        } else if (getCurrentLevel() == 2) {
             g.setColor(Color.black);
             g.fillRect(0, 0,  Game.WIDTH, Game.WIDTH);
         } else {
