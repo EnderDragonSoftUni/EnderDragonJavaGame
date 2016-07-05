@@ -15,7 +15,7 @@ public class LevelHandler {
     private GiftHandler giftHandler;
 
     public LevelHandler(PlatformHandler platformHandler, GiftHandler giftHandler) {
-        currentLevel = 1;
+        currentLevel = 0;
         this.platformHandler = platformHandler;
         this.giftHandler = giftHandler;
     }
@@ -29,7 +29,7 @@ public class LevelHandler {
     }
 
     public static void setCurrentLevel(int currentLevel) {
-        LevelHandler.currentLevel = currentLevel;
+        LevelHandler.currentLevel += currentLevel;
     }
 
     public void tick() {
@@ -44,15 +44,19 @@ public class LevelHandler {
     }
 
     public void render(Graphics g) {
-        if (currentLevel == 1) {
-            g.drawImage(Assets.background, 0, 0, Game.WIDTH, Game.WIDTH, null);
-        } else if (getCurrentLevel() == 2) {
+        switch (currentLevel) {
+            default:
+                int levelSize = Assets.levelBackgrounds.size();
+                g.drawImage(Assets.levelBackgrounds.get(currentLevel % levelSize), 0, 0, Game.WIDTH, Game.WIDTH, null);
+                break;
+        }
+     /*   } else if (getCurrentLevel() == 2) {
             g.setColor(Color.black);
             g.fillRect(0, 0,  Game.WIDTH, Game.WIDTH);
         } else {
             g.setColor(Color.red);
             g.fillRect(0, 0,  Game.WIDTH, Game.WIDTH);
-        }
+        }*/
     }
 
 }
