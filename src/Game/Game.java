@@ -9,6 +9,7 @@ import Objects.ProgressBar;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.io.IOException;
 
 /**
  * Created by Niki on 5.6.2016 г..
@@ -52,7 +53,7 @@ public class Game extends Canvas implements Runnable {
 
     public static STATE gameState = STATE.Menu;
 
-    public Game() {
+    public Game() throws IOException {
         Assets.init();
         this.platformHandler = new PlatformHandler();
         this.giftHandler = new GiftHandler();
@@ -61,7 +62,7 @@ public class Game extends Canvas implements Runnable {
         this.levelHandler = new LevelHandler(this.platformHandler, this.giftHandler);
 
         platformHandler.addStartingPlatforms();
-        giftHandler.addStartingGifts();
+        giftHandler.addRandomGifts();
         player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler, giftHandler, progressBar);
 
         menu = new Menu(this, platformHandler);
@@ -149,7 +150,7 @@ public class Game extends Canvas implements Runnable {
                 PlatformHandler.clearAllPlatforms();
                 PlatformHandler.addStartingPlatforms();
                 GiftHandler.clearAllGifts();
-                GiftHandler.addStartingGifts();
+                GiftHandler.addRandomGifts();
                 progressBar.setFillProgressBar(0);
                 LevelHandler.setCurrentLevel(1);
 

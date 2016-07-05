@@ -1,14 +1,17 @@
 package GraphicHandler;
 
 import Game.Game;
-import Objects.Gift;
+import Objects.gift.CopperCoin;
+import Objects.gift.Gift;
+import Objects.gift.GoldCoin;
+import Objects.gift.SilverCoin;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-
 public class GiftHandler {
+
     public static ArrayList<Gift> objects = new ArrayList<>();
 
     private static Random rand;
@@ -48,7 +51,7 @@ public class GiftHandler {
         }
     }
 
-    public static void  clearAllGifts(){
+    public static void clearAllGifts() {
         objects = new ArrayList<>();
     }
 
@@ -64,11 +67,25 @@ public class GiftHandler {
         int tempWidth = rand.nextInt(200);
         int tempX = rand.nextInt(Game.WIDTH - tempWidth);
 
-        objects.add(new Gift(tempX, -50, 32, 32));
+        objects.add(getRandomGifts(tempX, -50, 32, 32));
     }
 
-    public static void addStartingGifts() {
-        objects.add(new Gift(rand.nextInt(200), rand.nextInt(100), 32,32));
+    private static Gift getRandomGifts(int x, int y, int width, int heigh) {
+        int randomNumber = rand.nextInt(3);
+        Gift gift;
+        switch (randomNumber) {
+            case 0:
+                return gift = new GoldCoin(x, y, width, heigh);
+                
+            case 1:
+                return gift = new SilverCoin(x, y, width, heigh);
+                
+            case 2:
+                return gift = new CopperCoin(x, y, width, heigh);
+                
+                default: 
+                    return gift = new GoldCoin(x, y, width, heigh);
+        }
 
     }
 }

@@ -1,5 +1,6 @@
 package Objects;
 
+import Objects.gift.Gift;
 import Game.Game;
 import GraphicHandler.*;
 
@@ -7,6 +8,9 @@ import java.awt.*;
 import java.util.Random;
 
 public class Player {
+
+    ;
+    
     private int x, y, cropWidth, cropHeight, velocity, playerWidth, playerHeight;
     private int spriteCol;
     private int spriteRow;
@@ -25,7 +29,7 @@ public class Player {
     public static final int THISVELOCITY = 15;
     public static final int CROPWIDTH = 108;
     public static final int CROPHEIGHT = 140;
-
+    private static int bonusPoint = 0;
 
     public static final int VELOCITY = 15;
 
@@ -44,6 +48,7 @@ public class Player {
         this.rand = new Random();
         this.spriteCol = 0;
         this.spriteRow = 0;
+
     }
 
     public Rectangle getBounds() {
@@ -74,9 +79,9 @@ public class Player {
         }
 
         if (giftsCollision()) {
-           // Sound.playSound("res/audio/WOW.wav");
+            // Sound.playSound("res/audio/WOW.wav");
 
-            Game.score += 100 * this.y / 250;
+            Game.score += bonusPoint;//100 * this.y / 250;
             progressBar.setProgress(true);
         }
 
@@ -102,8 +107,7 @@ public class Player {
     }
 
     public void render(Graphics g) {
-        g.drawImage(img.crop(this.spriteCol * this.cropWidth, this.spriteRow * this.cropHeight, this.cropWidth, this.cropHeight)
-                , this.x, this.y, this.playerWidth, this.playerHeight, null);
+        g.drawImage(img.crop(this.spriteCol * this.cropWidth, this.spriteRow * this.cropHeight, this.cropWidth, this.cropHeight), this.x, this.y, this.playerWidth, this.playerHeight, null);
 //        g.setColor(Color.YELLOW);
 //        g.drawRect(getBotBounds().x,getBotBounds().y,getBotBounds().width,getBotBounds().height);
 
@@ -133,11 +137,30 @@ public class Player {
 
             if (this.getBounds().intersects(tempObject.getBounds())) {
                 giftsCollision = true;
+                getBonusPoint(GiftHandler.objects.get(i));
                 GiftHandler.objects.remove(i);
                 //y = tempObject.getTopBounds().y - this.playerHeight + 13;
             }
 
         }
         return giftsCollision;
+    }
+
+    private void getBonusPoint(Gift get) {
+        switch (get.getClass().getSimpleName()) {
+            case "GoldCoin":
+                bonusPoint = 500;
+                break;
+            case "SilverCoin":
+                bonusPoint = 200;
+                break;
+            case "CopperCoin":
+                bonusPoint = 75;
+                break;
+            default:
+                bonusPoint = 0;
+
+        }
+
     }
 }
