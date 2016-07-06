@@ -27,24 +27,51 @@ public class Menu extends MouseAdapter {
         int my = e.getY();
 
         if (game.gameState == Game.STATE.Menu) {
-            //Sound.playSound("res/audio/WOW.wav");
-            //Play Button
-            if (mouseOver(mx, my, Assets.startButtonX, Assets.startButtonY, 200, 80)) {
+            if (mouseOver(mx, my, Assets.startButton.getX(), Assets.startButton.getY(), 200, 80)) {
                 game.gameState = Game.STATE.Game;
 
                 return;
             }
 
+            if (mouseOver(mx, my, Assets.shopButton.getX(), Assets.shopButton.getY(), 200, 80)) {
+                game.gameState = Game.STATE.Shop;
+
+                return;
+            }
+
             //Quit Button
-            if (mouseOver(mx, my, Assets.endButtonX, Assets.endButtonY, 200, 80)) {
+            if (mouseOver(mx, my, Assets.exitButton.getX(), Assets.exitButton.getY(), 200, 80)) {
                 System.exit(1);
             }
         }
 
         if (game.gameState == Game.STATE.End) {
-            if (mouseOver(mx, my, Assets.tryAgainButtonX, Assets.tryAgainButtonY, 200, 80)) {
+            if (mouseOver(mx, my, Assets.tryAgainButton.getX(), Assets.tryAgainButton.getY(), 200, 80)) {
                 Game.gameState = Game.STATE.Menu;
 
+            }
+        }
+
+        if (game.gameState == Game.STATE.Shop) {
+            if (mouseOver(mx, my, Assets.shopBackButton.getX(), Assets.shopBackButton.getY(), 200, 80)) {
+                game.gameState = Game.STATE.Menu;
+
+                return;
+            }
+            if (mouseOver(mx, my, Assets.buyItemOneButton.getX(), Assets.buyItemOneButton.getY(), 100, 40)) {
+                game.item1unlocked = true;
+
+                return;
+            }
+            if (mouseOver(mx, my, Assets.buyItemTwoButton.getX(), Assets.buyItemTwoButton.getY(), 100, 40)) {
+                game.item2unlocked = true;
+
+                return;
+            }
+            if (mouseOver(mx, my, Assets.buyItemThreeButton.getX(), Assets.buyItemThreeButton.getY(), 100, 40)) {
+                game.item3unlocked = true;
+
+                return;
             }
         }
 
@@ -76,10 +103,24 @@ public class Menu extends MouseAdapter {
             g.drawImage(Assets.gameLogo, Game.WIDTH / 3 - 80, 20, 380, 70, null);
             Assets.startButton.render(g);
             Assets.exitButton.render(g);
+            Assets.shopButton.render(g);
 
         } else if (Game.gameState == Game.STATE.End){
             g.drawImage(Assets.gameOver, 170, 40, 320, 100, null);
             Assets.tryAgainButton.render(g);
+        } else if (game.gameState == Game.STATE.Shop) {
+            Assets.shopBackButton.render(g);
+
+            if (!game.item1unlocked){
+                Assets.buyItemOneButton.render(g);
+            }
+            if (!game.item2unlocked){
+                Assets.buyItemTwoButton.render(g);
+            }
+            if (!game.item3unlocked){
+                Assets.buyItemThreeButton.render(g);
+            }
+
         }
     }
 }

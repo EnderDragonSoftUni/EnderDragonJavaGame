@@ -23,6 +23,9 @@ public class Game extends Canvas implements Runnable {
     public static int score = 0;
     public static Score currentScore;
 
+    public static boolean item1unlocked = false;
+    public static boolean item2unlocked = false;
+    public static boolean item3unlocked = false;
 
     private Menu menu;
     private HighScore highScore;
@@ -47,6 +50,7 @@ public class Game extends Canvas implements Runnable {
     public enum STATE {
         Menu,
         Game,
+        Shop,
         Credentials,
         End
     }
@@ -191,6 +195,8 @@ public class Game extends Canvas implements Runnable {
             this.score = 0;
             menu.render(g);
             currentScore.render(g);
+        }else if (gameState == STATE.Shop) {
+            menu.render(g);
         }
 
         g.dispose();
