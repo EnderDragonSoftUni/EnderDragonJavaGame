@@ -20,7 +20,7 @@ public class Player {
     private ProgressBar progressBar;
     private Random rand;
 
-    private static SpriteSheet img = Assets.player;
+    public static SpriteSheet img = Assets.player;
     public static boolean inAir = true;
     public static boolean inJumpingBox = false;
     public static boolean isDead = false;

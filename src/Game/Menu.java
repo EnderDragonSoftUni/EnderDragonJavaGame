@@ -1,11 +1,14 @@
 package Game;
 
-import GraphicHandler.Assets;
-import GraphicHandler.PlatformHandler;
-
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.logging.Handler;
+
+import GraphicHandler.Assets;
+import GraphicHandler.PlatformHandler;
+import Objects.Player;
+import Sound.Sound;
 
 
 /**
@@ -46,7 +49,7 @@ public class Menu extends MouseAdapter {
         if (game.gameState == Game.STATE.End) {
             if (mouseOver(mx, my, Assets.tryAgainButton.getX(), Assets.tryAgainButton.getY(), 200, 80)) {
                 Game.gameState = Game.STATE.Menu;
-                game.createPlayer();
+
             }
         }
 
@@ -58,16 +61,28 @@ public class Menu extends MouseAdapter {
             }
             if (mouseOver(mx, my, Assets.buyItemOneButton.getX(), Assets.buyItemOneButton.getY(), 100, 40)) {
                 game.item1unlocked = true;
+                game.item2unlocked = false;
+                game.item3unlocked = false;
+
+                Player.img = Assets.wizard;
 
                 return;
             }
             if (mouseOver(mx, my, Assets.buyItemTwoButton.getX(), Assets.buyItemTwoButton.getY(), 100, 40)) {
                 game.item2unlocked = true;
+                game.item1unlocked = false;
+                game.item3unlocked = false;
+
+                Player.img = Assets.nakov;
 
                 return;
             }
             if (mouseOver(mx, my, Assets.buyItemThreeButton.getX(), Assets.buyItemThreeButton.getY(), 100, 40)) {
                 game.item3unlocked = true;
+                game.item2unlocked = false;
+                game.item1unlocked = false;
+
+                Player.img = Assets.zombie;
 
                 return;
             }
@@ -103,19 +118,23 @@ public class Menu extends MouseAdapter {
             Assets.exitButton.render(g);
             Assets.shopButton.render(g);
 
-        } else if (Game.gameState == Game.STATE.End){
+        } else if (Game.gameState == Game.STATE.End) {
             g.drawImage(Assets.gameOver, 170, 40, 320, 100, null);
             Assets.tryAgainButton.render(g);
         } else if (game.gameState == Game.STATE.Shop) {
             Assets.shopBackButton.render(g);
 
-            if (!game.item1unlocked){
+            g.drawImage(Assets.wizImage, Assets.buyItemOneButton.getX() - 20, Assets.buyItemOneButton.getY() - 130, null);
+            g.drawImage(Assets.nakovImage, Assets.buyItemTwoButton.getX() - 10, Assets.buyItemTwoButton.getY() - 130, null);
+            g.drawImage(Assets.zombieImage, Assets.buyItemThreeButton.getX() - 10, Assets.buyItemThreeButton.getY() - 130, null);
+
+            if (!game.item1unlocked) {
                 Assets.buyItemOneButton.render(g);
             }
-            if (!game.item2unlocked){
+            if (!game.item2unlocked) {
                 Assets.buyItemTwoButton.render(g);
             }
-            if (!game.item3unlocked){
+            if (!game.item3unlocked) {
                 Assets.buyItemThreeButton.render(g);
             }
 

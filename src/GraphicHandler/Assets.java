@@ -54,9 +54,16 @@ public class Assets {
     public static BufferedImage iceberg;
     public static BufferedImage tile2;
     public static BufferedImage hiscore;
+    public static BufferedImage nakovImage;
+    public static BufferedImage wizImage;
+    public static BufferedImage zombieImage;
     public static ArrayList<BufferedImage> levelBackgrounds;
 
     public static SpriteSheet player;
+    public static SpriteSheet wizard;
+    public static SpriteSheet nakov;
+    public static SpriteSheet zombie;
+
     public static SpriteSheet goldCoin;
     public static SpriteSheet silverCoin;
     public static SpriteSheet copperCoin;
@@ -81,10 +88,19 @@ public class Assets {
         iceberg = ImageLoader.loadImage("/Iceberg.png");
         tile2 = ImageLoader.loadImage("/tile2.jpg");
         hiscore = ImageLoader.loadImage("/hiscore-logo.png");
+
+        wizImage = ImageLoader.loadImage("/wizImage.png");
+        nakovImage = ImageLoader.loadImage("/NakovImg.png");
+        zombieImage = ImageLoader.loadImage("/zombieImg.png");
+
         levelBackgrounds = new ArrayList<>();
         createLevelsBackgrounds();
 
         player = new SpriteSheet(ImageLoader.loadImage("/sprite.png"));
+        wizard = new SpriteSheet(ImageLoader.loadImage("/wizard.png"));
+        nakov = new SpriteSheet(ImageLoader.loadImage("/Nakov.png"));
+        zombie = new SpriteSheet(ImageLoader.loadImage("/spriteZombie.png"));
+
         goldCoin = new SpriteSheet(ImageLoader.loadImage("/coin_gold.png"));
         silverCoin = new SpriteSheet(ImageLoader.loadImage("/coin_silver.png"));
         copperCoin = new SpriteSheet(ImageLoader.loadImage("/coin_copper.png"));
