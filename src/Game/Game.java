@@ -177,10 +177,10 @@ public class Game extends Canvas implements Runnable {
 
 
         } else if (gameState == Game.STATE.Menu) {
-            this.score = 0;
+            score = 0;
             menu.render(g);
         } else if (gameState == STATE.End) {
-            this.score = 0;
+            score = 0;
             menu.render(g);
             currentScore.render(g);
         }else if (gameState == STATE.Shop) {
