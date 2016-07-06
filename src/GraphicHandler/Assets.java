@@ -72,7 +72,7 @@ public class Assets {
         startButton = new Button(startButtonX, startButtonY, ImageLoader.loadImage("/PlayButton.png"));
         exitButton = new Button(endButtonX, endButtonY, ImageLoader.loadImage("/ExitButton.png"));
         backButton = new Button(backButtonX, backButtonY, ImageLoader.loadImage("/BackButton.png"));
-        shopBackButton = new Button(shopBackButtonX, shopBackButtonY, ImageLoader.loadImage("/BackButton.png"));
+        shopBackButton = new Button(shopBackButtonX, shopBackButtonY, ImageLoader.loadImage("/ShopButton.png"));
         tryAgainButton = new Button(tryAgainButtonX, tryAgainButtonY, ImageLoader.loadImage("/TryAgainButton.png"));
 
         buyItemOneButton = new Button(buyItemOneButtonX, buyItemOneButtonY, 100, 40, ImageLoader.loadImage("/TryAgainButton.png")); //// TODO: 06-Jul-16 make a "buy" button image
