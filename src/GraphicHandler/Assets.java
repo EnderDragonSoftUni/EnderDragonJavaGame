@@ -14,38 +14,38 @@ public class Assets {
 
     public static Button startButton;
     public static int startButtonX = Game.WIDTH / 2 - 100;
-    public static int startButtonY = 150;
+    public static int startButtonY = 120;
+
+    public static Button shopButton;
+    public static int shopButtonX = Game.WIDTH / 2 - 100;
+    public static int shopButtonY = 220;
 
     public static Button exitButton;
     public static int endButtonX = Game.WIDTH / 2 - 100;
-    public static int endButtonY = 300;
+    public static int endButtonY = 320;
 
     public static Button backButton;
     public static int backButtonX = Game.WIDTH / 2 - 100;
     public static int backButtonY = 300;
 
     public static Button shopBackButton;
-    public static int shopBackButtonX = Game.WIDTH/2-100;
+    public static int shopBackButtonX = Game.WIDTH / 2 - 100;
     public static int shopBackButtonY = 350;
 
     public static Button tryAgainButton;
     public static int tryAgainButtonX = Game.WIDTH / 2 - 100;
     public static int tryAgainButtonY = 300;
 
-    public static Button shopButton;
-    public static int shopButtonX = Game.WIDTH / 2 - 100;
-    public static int shopButtonY = 225;
-
     public static Button buyItemOneButton;
-    public static int buyItemOneButtonX = Game.WIDTH/2-250;
+    public static int buyItemOneButtonX = Game.WIDTH / 2 - 250;
     public static int buyItemOneButtonY = 270;
 
     public static Button buyItemTwoButton;
-    public static int buyItemTwoButtonX = Game.WIDTH/2-50;
+    public static int buyItemTwoButtonX = Game.WIDTH / 2 - 50;
     public static int buyItemTwoButtonY = 270;
 
     public static Button buyItemThreeButton;
-    public static int buyItemThreeButtonX = Game.WIDTH/2+150;
+    public static int buyItemThreeButtonX = Game.WIDTH / 2 + 150;
     public static int buyItemThreeButtonY = 270;
 
     public static BufferedImage background;
@@ -72,15 +72,18 @@ public class Assets {
         startButton = new Button(startButtonX, startButtonY, ImageLoader.loadImage("/PlayButton.png"));
         exitButton = new Button(endButtonX, endButtonY, ImageLoader.loadImage("/ExitButton.png"));
         backButton = new Button(backButtonX, backButtonY, ImageLoader.loadImage("/BackButton.png"));
-        shopBackButton = new Button(shopBackButtonX, shopBackButtonY, ImageLoader.loadImage("/ShopButton.png"));
+        shopBackButton = new Button(shopBackButtonX, shopBackButtonY, ImageLoader.loadImage("/BackButton.png"));
         tryAgainButton = new Button(tryAgainButtonX, tryAgainButtonY, ImageLoader.loadImage("/TryAgainButton.png"));
 
-        buyItemOneButton = new Button(buyItemOneButtonX, buyItemOneButtonY, 100, 40, ImageLoader.loadImage("/TryAgainButton.png")); //// TODO: 06-Jul-16 make a "buy" button image
-        buyItemTwoButton = new Button(buyItemTwoButtonX, buyItemTwoButtonY, 100, 40, ImageLoader.loadImage("/TryAgainButton.png")); //// TODO: 06-Jul-16 make a "buy" button image
-        buyItemThreeButton = new Button(buyItemThreeButtonX, buyItemThreeButtonY, 100, 40, ImageLoader.loadImage("/TryAgainButton.png")); //// TODO: 06-Jul-16 make a "buy" button image
+        buyItemOneButton = new Button(buyItemOneButtonX, buyItemOneButtonY, 100, 40, ImageLoader.loadImage
+                ("/SelectButton.png"));
+        buyItemTwoButton = new Button(buyItemTwoButtonX, buyItemTwoButtonY, 100, 40, ImageLoader.loadImage
+                ("/SelectButton.png"));
+        buyItemThreeButton = new Button(buyItemThreeButtonX, buyItemThreeButtonY, 100, 40, ImageLoader.loadImage
+                ("/SelectButton.png"));
 
-        shopButton = new Button(shopButtonX, shopButtonY, ImageLoader.loadImage("/TryAgainButton.png")); //// TODO: 06-Jul-16 make a "Shop" button image
-        
+        shopButton = new Button(shopButtonX, shopButtonY, ImageLoader.loadImage("/ShopButton.png"));
+
 
         background = ImageLoader.loadImage("/background.png");
         gameLogo = ImageLoader.loadImage("/logo.png");
