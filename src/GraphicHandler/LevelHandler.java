@@ -13,11 +13,13 @@ public class LevelHandler {
     private static int currentLevel;
     private PlatformHandler platformHandler;
     private GiftHandler giftHandler;
+    private static boolean levelPassed;
 
     public LevelHandler(PlatformHandler platformHandler, GiftHandler giftHandler) {
-        currentLevel = 0;
+        currentLevel = 1;
         this.platformHandler = platformHandler;
         this.giftHandler = giftHandler;
+        levelPassed = true;
     }
 
     public static int getCurrentLevel() {
@@ -29,27 +31,32 @@ public class LevelHandler {
     }
 
     public static void setCurrentLevel(int currentLevel) {
-        LevelHandler.currentLevel += currentLevel;
+        LevelHandler.currentLevel = currentLevel;
+    }
+
+    public static void levelPassed() {
+        levelPassed = true;
     }
 
     public void tick() {
-        if (this.currentLevel == 1) {
-            Platform.setImg(Assets.iceberg);
-        }else if (currentLevel == 1){
+        if (levelPassed) {
+            levelPassed = false;
+            if (currentLevel == 1) {
+                Platform.setImg(Assets.iceberg);
+            } else if (currentLevel == 2) {
 
-            Platform.setImg(Assets.iceberg);
-        } else {
-            Platform.setImg(Assets.iceberg);
+                Platform.setImg(Assets.tile2);
+            } else if (currentLevel == 3){
+                Platform.setImg(Assets.iceberg);
+            }
         }
     }
 
     public void render(Graphics g) {
-        switch (currentLevel) {
-            default:
-                int levelSize = Assets.levelBackgrounds.size();
-                g.drawImage(Assets.levelBackgrounds.get(currentLevel % levelSize), 0, 0, Game.WIDTH, Game.WIDTH, null);
-                break;
-        }
+        int levelSize = Assets.levelBackgrounds.size();
+        g.drawImage(Assets.levelBackgrounds.get((currentLevel - 1) % levelSize), 0, 0, Game.WIDTH, Game.WIDTH, null);
+
+
      /*   } else if (getCurrentLevel() == 2) {
             g.setColor(Color.black);
             g.fillRect(0, 0,  Game.WIDTH, Game.WIDTH);

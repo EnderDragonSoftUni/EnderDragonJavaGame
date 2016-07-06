@@ -2,7 +2,6 @@ package GraphicHandler;
 
 import Game.Game;
 import Objects.Button;
-import java.awt.Image;
 
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
@@ -53,6 +52,7 @@ public class Assets {
     public static BufferedImage gameLogo;
     public static BufferedImage gameOver;
     public static BufferedImage iceberg;
+    public static BufferedImage tile2;
     public static BufferedImage hiscore;
     public static ArrayList<BufferedImage> levelBackgrounds;
 
@@ -79,6 +79,7 @@ public class Assets {
         gameLogo = ImageLoader.loadImage("/logo.png");
         gameOver = ImageLoader.loadImage("/gameover.png");
         iceberg = ImageLoader.loadImage("/Iceberg.png");
+        tile2 = ImageLoader.loadImage("/tile2.jpg");
         hiscore = ImageLoader.loadImage("/hiscore-logo.png");
         levelBackgrounds = new ArrayList<>();
         createLevelsBackgrounds();

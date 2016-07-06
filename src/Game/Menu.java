@@ -1,13 +1,11 @@
 package Game;
 
+import GraphicHandler.Assets;
+import GraphicHandler.PlatformHandler;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.logging.Handler;
-
-import GraphicHandler.Assets;
-import GraphicHandler.PlatformHandler;
-import Sound.Sound;
 
 
 /**
@@ -48,7 +46,7 @@ public class Menu extends MouseAdapter {
         if (game.gameState == Game.STATE.End) {
             if (mouseOver(mx, my, Assets.tryAgainButton.getX(), Assets.tryAgainButton.getY(), 200, 80)) {
                 Game.gameState = Game.STATE.Menu;
-
+                game.createPlayer();
             }
         }
 

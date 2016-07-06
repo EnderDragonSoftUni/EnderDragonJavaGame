@@ -65,9 +65,9 @@ public class Game extends Canvas implements Runnable {
         this.progressBar = new ProgressBar(this);
         this.levelHandler = new LevelHandler(this.platformHandler, this.giftHandler);
 
-        platformHandler.addStartingPlatforms();
-        giftHandler.addRandomGifts();
-        player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler, giftHandler, progressBar);
+        PlatformHandler.addStartingPlatforms();
+        GiftHandler.addRandomGifts();
+        this.createPlayer();
 
         menu = new Menu(this, platformHandler);
         this.addMouseListener(menu);
@@ -144,22 +144,10 @@ public class Game extends Canvas implements Runnable {
             giftHandler.tick();
             progressBar.tick();
             highScore.tick(score);
-            if (Player.isDead) {
-                currentScore = new Score(score);
-                //currentScore.save();
-                //currentScore.getTop3();
-                Score.tick(currentScore);
-                Game.gameState = Game.STATE.End;
-                Player.isDead = false;
-                PlatformHandler.clearAllPlatforms();
-                PlatformHandler.addStartingPlatforms();
-                GiftHandler.clearAllGifts();
-                GiftHandler.addRandomGifts();
-                progressBar.setFillProgressBar(0);
-                LevelHandler.setCurrentLevel(1);
+            levelHandler.tick();
 
-                player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler, giftHandler, progressBar);
-                InputHandler.beginning = true;
+            if (Player.isDead) {
+                this.resetGame();
             }
         } else if (gameState == STATE.Menu) {
             menu.tick();
@@ -201,5 +189,24 @@ public class Game extends Canvas implements Runnable {
 
         g.dispose();
         bs.show();
+    }
+
+    private void resetGame(){
+        currentScore = new Score(score);
+        Score.tick(currentScore);
+        Game.gameState = Game.STATE.End;
+        Player.isDead = false;
+        PlatformHandler.clearAllPlatforms();
+        PlatformHandler.addStartingPlatforms();
+        GiftHandler.clearAllGifts();
+        GiftHandler.addRandomGifts();
+        progressBar.setFillProgressBar(0);
+        LevelHandler.setCurrentLevel(1);
+        InputHandler.beginning = true;
+        LevelHandler.levelPassed();
+    }
+
+    public void createPlayer(){
+        player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler, giftHandler, progressBar);
     }
 }

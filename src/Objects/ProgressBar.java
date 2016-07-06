@@ -47,6 +47,7 @@ public class ProgressBar {
         if (fillProgressBar >= WIDTH) {
             LevelHandler.nextLevel();
             fillProgressBar = 0;
+            LevelHandler.levelPassed();
         }
         progress = false;
 
