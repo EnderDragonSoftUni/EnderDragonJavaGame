@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
  * Created by Niki on 5.6.2016 г..
  */
 public class Menu extends MouseAdapter {
+
     private Game game;
     private PlatformHandler platformHandler;
 
@@ -39,6 +40,11 @@ public class Menu extends MouseAdapter {
                 return;
             }
 
+            if (mouseOver(mx, my, Assets.highScoreButton.getX(), Assets.highScoreButton.getY(), 200, 80)){
+                Game.gameState = Game.STATE.HighScore;
+                return;
+            }
+
             //Quit Button
             if (mouseOver(mx, my, Assets.exitButton.getX(), Assets.exitButton.getY(), 200, 80)) {
                 System.exit(1);
@@ -48,7 +54,7 @@ public class Menu extends MouseAdapter {
         if (Game.gameState == Game.STATE.End) {
             if (mouseOver(mx, my, Assets.tryAgainButton.getX(), Assets.tryAgainButton.getY(), 200, 80)) {
                 Game.gameState = Game.STATE.Menu;
-
+                game.setScore(0);
             }
         }
 
@@ -87,6 +93,11 @@ public class Menu extends MouseAdapter {
             }
         }
 
+        if (Game.gameState == Game.STATE.HighScore){
+            if (mouseOver(mx, my, Assets.shopBackButton.getX(), Assets.shopBackButton.getY(), 200, 80)) {
+                Game.gameState = Game.STATE.Menu;
+            }
+        }
     }
 
     public void mouseReleased(MouseEvent e) {
@@ -116,16 +127,25 @@ public class Menu extends MouseAdapter {
             Assets.startButton.render(g);
             Assets.exitButton.render(g);
             Assets.shopButton.render(g);
+            Assets.highScoreButton.render(g);
 
         } else if (Game.gameState == Game.STATE.End) {
             g.drawImage(Assets.gameOver, 170, 40, 320, 100, null);
             Assets.tryAgainButton.render(g);
-        } else if (game.gameState == Game.STATE.Shop) {
+
+            Font font = new Font("Calibri", Font.BOLD, 40);
+            g.setFont(font);
+            g.setColor(Color.BLUE);
+            g.drawString(String.format("You lost with a score of: %d", this.game.getScore()), Game.WIDTH / 5 - 40, 250);
+        } else if (Game.gameState == Game.STATE.Shop) {
             Assets.shopBackButton.render(g);
 
-            g.drawImage(Assets.wizImage, Assets.buyItemOneButton.getX() - 20, Assets.buyItemOneButton.getY() - 130, null);
-            g.drawImage(Assets.nakovImage, Assets.buyItemTwoButton.getX() - 10, Assets.buyItemTwoButton.getY() - 130, null);
-            g.drawImage(Assets.zombieImage, Assets.buyItemThreeButton.getX() - 10, Assets.buyItemThreeButton.getY() - 130, null);
+            g.drawImage(Assets.wizImage, Assets.buyItemOneButton.getX() - 20, Assets.buyItemOneButton.getY() - 130,
+                    null);
+            g.drawImage(Assets.nakovImage, Assets.buyItemTwoButton.getX() - 10, Assets.buyItemTwoButton.getY() - 130,
+                    null);
+            g.drawImage(Assets.zombieImage, Assets.buyItemThreeButton.getX() - 10, Assets.buyItemThreeButton.getY() -
+                    130, null);
 
             if (!game.item1unlocked) {
                 Assets.buyItemOneButton.render(g);
@@ -137,6 +157,9 @@ public class Menu extends MouseAdapter {
                 Assets.buyItemThreeButton.render(g);
             }
 
+        } else if (Game.gameState == Game.STATE.HighScore) {
+            Game.currentScore.render(g);
+            Assets.shopBackButton.render(g);
         }
     }
 }

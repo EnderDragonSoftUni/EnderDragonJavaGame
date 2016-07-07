@@ -43,7 +43,7 @@ public class Game extends Canvas implements Runnable {
         return score;
     }
 
-    public void setScore(int x) {
+    public void setScore(int score) {
         this.score = score;
     }
 
@@ -51,6 +51,7 @@ public class Game extends Canvas implements Runnable {
         Menu,
         Game,
         Shop,
+        HighScore,
         Credentials,
         End
     }
@@ -62,6 +63,7 @@ public class Game extends Canvas implements Runnable {
         this.platformHandler = new PlatformHandler();
         this.giftHandler = new GiftHandler();
         this.highScore = new HighScore(score);
+        this.currentScore = new Score(score);
         this.progressBar = new ProgressBar(this);
         this.levelHandler = new LevelHandler(this.platformHandler, this.giftHandler);
 
@@ -114,7 +116,7 @@ public class Game extends Canvas implements Runnable {
                 lastTime = now;
 
                 try {
-                    thread.sleep(1);
+                    Thread.sleep(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -175,23 +177,19 @@ public class Game extends Canvas implements Runnable {
             highScore.render(g);
             progressBar.render(g);
 
-
-        } else if (gameState == Game.STATE.Menu) {
-            score = 0;
+        } else if (gameState == Game.STATE.Menu ||
+                gameState == STATE.End ||
+                gameState == STATE.Shop ||
+                gameState == STATE.HighScore) {
             menu.render(g);
-        } else if (gameState == STATE.End) {
-            score = 0;
-            menu.render(g);
-            currentScore.render(g);
-        }else if (gameState == STATE.Shop) {
-            menu.render(g);
+        } else if (gameState == STATE.HighScore) {
         }
 
         g.dispose();
         bs.show();
     }
 
-    private void resetGame(){
+    public void resetGame() {
         currentScore = new Score(score);
         Score.tick(currentScore);
         Game.gameState = Game.STATE.End;
@@ -206,7 +204,7 @@ public class Game extends Canvas implements Runnable {
         LevelHandler.levelPassed();
     }
 
-    public void createPlayer(){
+    public void createPlayer() {
         player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler, giftHandler, progressBar);
     }
 }

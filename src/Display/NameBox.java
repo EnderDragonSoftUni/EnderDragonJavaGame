@@ -9,8 +9,9 @@ import java.awt.event.ActionListener;
  * Created by Niki on 12.6.2016 г..
  */
 public class NameBox extends JFrame {
+
     final JFrame frame = new JFrame();
-    public static String playerName = "NoName";
+    public static String playerName;
 
     public NameBox() {
         JPanel panel = new JPanel();
@@ -38,7 +39,7 @@ public class NameBox extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String input = textField.getText();
-                playerName = input;
+                setPlayerName(input);
                 frame.dispose();
             }
         });
@@ -47,9 +48,18 @@ public class NameBox extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String input = textField.getText();
-                playerName = input;
+                setPlayerName(input);
                 frame.dispose();
             }
         });
+    }
+
+    private void setPlayerName(String name) {
+        System.out.println(name);
+        if (name.equals("") || name.equals(" ")) {
+            playerName = "NoName";
+        } else {
+            playerName = name;
+        }
     }
 }

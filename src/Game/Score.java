@@ -91,6 +91,7 @@ public class Score {
 }
 
     public void render(Graphics g) {
+        this.getTop3();
         g.setColor(Color.DARK_GRAY);
         g.fillRect(this.highScoreX, this.highScoreY, this.WIDTH, this.HEIGHT);
         g.setColor(Color.BLUE);

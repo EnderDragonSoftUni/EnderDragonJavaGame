@@ -13,16 +13,20 @@ import java.util.Properties;
 public class Assets {
 
     public static Button startButton;
-    public static int startButtonX = Game.WIDTH / 2 - 100;
+    public static int startButtonX = Game.WIDTH / 2 - 110;
     public static int startButtonY = 120;
 
     public static Button shopButton;
-    public static int shopButtonX = Game.WIDTH / 2 - 100;
+    public static int shopButtonX = Game.WIDTH / 2 - 220;
     public static int shopButtonY = 220;
 
     public static Button exitButton;
-    public static int endButtonX = Game.WIDTH / 2 - 100;
+    public static int endButtonX = Game.WIDTH / 2 - 110;
     public static int endButtonY = 320;
+
+    public static Button highScoreButton;
+    public static int highScoreButtonX = Game.WIDTH / 2;
+    public static int highScoreButtonY = 220;
 
     public static Button backButton;
     public static int backButtonX = Game.WIDTH / 2 - 100;
@@ -84,6 +88,7 @@ public class Assets {
 
         shopButton = new Button(shopButtonX, shopButtonY, ImageLoader.loadImage("/ShopButton.png"));
 
+        highScoreButton = new Button(highScoreButtonX, highScoreButtonY, ImageLoader.loadImage("/HighScoreButton.png"));
 
         background = ImageLoader.loadImage("/background.png");
         gameLogo = ImageLoader.loadImage("/logo.png");
