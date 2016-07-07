@@ -1,50 +1,26 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package fortune;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
-
-/**
- * Базовый элемент отображения плитки карты.
- */
 public class BaseTile implements IRenderToCanvas {
 
-    /**
-     * Размер плитки - ширина, высота.
-     */
+   
     final public static int SIZE = 40;
 
-    /**
-     * Буфер загруженных изображений.
-     */
+  
     private static HashMap<String, Image> images = new HashMap<String, Image>();
 
-    /**
-     * Имя изображения.
-     */
     public String image;
-    /**
-     * положение плитки по оси  X
-     */
+    
     public int posX;
-    /**
-     * положение плитки по оси  Y
-     */
+   
     public int posY;
 
-    /**
-     * Можно пройти
-     */
     public boolean isWalkable;
 
-    /**
-     * Идентификатор двери. По умолчанию нет.
-     */
     public int door = 0;
 
     public BaseTile(String image, int posX, int posY, boolean isWalkable) {
@@ -62,12 +38,7 @@ public class BaseTile implements IRenderToCanvas {
         this.door = door;
     }
 
-    /**
-     * Получить плитку по номеру (ИД).
-     *
-     * @param tileId
-     * @return BaseTile
-     */
+
     public static BaseTile getTileById(int tileId) {
         if (tileId == 1) {
             return new BaseTile("../data/white.png", 0, 0, false);
@@ -96,12 +67,6 @@ public class BaseTile implements IRenderToCanvas {
         g.drawImage(getImage(image), posX, posY, SIZE, SIZE, null);
     }
 
-    /**
-     * Вернет изображение по ссылке.
-     *
-     * @param name
-     * @return
-     */
     public static Image getImage(String name) {
         if (images.get(name) == null) {
             images.put(name, new ImageIcon(BaseTile.class.getResource(name)).getImage());
