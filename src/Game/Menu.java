@@ -106,11 +106,7 @@ public class Menu extends MouseAdapter {
 
     private boolean mouseOver(int mx, int my, int x, int y, int width, int height) {
         if (mx > x && mx < x + width) {
-            if (my > y && my < y + height) {
-                return true;
-            } else {
-                return false;
-            }
+            return my > y && my < y + height;
         } else {
             return false;
         }
@@ -147,13 +143,13 @@ public class Menu extends MouseAdapter {
             g.drawImage(Assets.zombieImage, Assets.buyItemThreeButton.getX() - 10, Assets.buyItemThreeButton.getY() -
                     130, null);
 
-            if (!game.item1unlocked) {
+            if (!Game.item1unlocked) {
                 Assets.buyItemOneButton.render(g);
             }
-            if (!game.item2unlocked) {
+            if (!Game.item2unlocked) {
                 Assets.buyItemTwoButton.render(g);
             }
-            if (!game.item3unlocked) {
+            if (!Game.item3unlocked) {
                 Assets.buyItemThreeButton.render(g);
             }
 

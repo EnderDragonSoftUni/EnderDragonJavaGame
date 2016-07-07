@@ -51,8 +51,8 @@ public class Score {
                 Files.newOutputStream(p, CREATE, APPEND))) {
             out.write(data, 0, data.length);
             out.close();
-        } catch (IOException x) {
-            System.err.println(x);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -76,8 +76,6 @@ public class Score {
                 topList.add(temp);
             });
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

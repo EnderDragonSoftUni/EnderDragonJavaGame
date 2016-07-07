@@ -18,12 +18,12 @@ public class GiftHandler {
     private static int timeBetweenGifts = 0;
 
     public GiftHandler() {
-        this.rand = new Random();
+        rand = new Random();
     }
 
     public void tick() {
 
-        if (InputHandler.beginning == false) {
+        if (!InputHandler.beginning) {
             if (timeBetweenGifts >= 30) {
                 timeBetweenGifts = 0;
                 addRandomGifts();

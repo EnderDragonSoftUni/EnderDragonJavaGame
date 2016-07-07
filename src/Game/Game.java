@@ -27,7 +27,7 @@ public class Game extends Canvas implements Runnable {
 
     public static boolean item1unlocked = false;
     public static boolean item2unlocked = false;
-    public static boolean item3unlocked = false;
+    public static boolean item3unlocked = true;
 
     private Menu menu;
     private HighScore highScore;
@@ -48,7 +48,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void setScore(int score) {
-        this.score = score;
+        Game.score = score;
     }
 
     public enum STATE {
@@ -68,12 +68,12 @@ public class Game extends Canvas implements Runnable {
         this.platformHandler = new PlatformHandler();
         this.giftHandler = new GiftHandler();
         this.highScore = new HighScore(score);
-        this.currentScore = new Score(score);
         this.progressBar = new ProgressBar(this);
         this.levelHandler = new LevelHandler(this.platformHandler, this.giftHandler);
         this.labirinth = new Labyrinth();
         this.fortune = new Fortune();
 
+        currentScore = new Score(score);
         PlatformHandler.addStartingPlatforms();
         GiftHandler.addRandomGifts();
         this.createPlayer();
@@ -81,7 +81,6 @@ public class Game extends Canvas implements Runnable {
         menu = new Menu(this, platformHandler);
         this.addMouseListener(menu);
         this.inputHandler = new InputHandler(this);
-
         new Window(WIDTH, HEIGHT, TITLE, this);
         new NameBox();
     }
@@ -158,7 +157,10 @@ public class Game extends Canvas implements Runnable {
             if (Player.isDead) {
                 this.resetGame();
             }
-        } else if (gameState == STATE.Menu) {
+        } else if (gameState == Game.STATE.Menu ||
+                gameState == STATE.End ||
+                gameState == STATE.Shop ||
+                gameState == STATE.HighScore) {
             menu.tick();
         }
     }
@@ -189,7 +191,6 @@ public class Game extends Canvas implements Runnable {
                 gameState == STATE.Shop ||
                 gameState == STATE.HighScore) {
             menu.render(g);
-        } else if (gameState == STATE.HighScore) {
         }
 
         g.dispose();

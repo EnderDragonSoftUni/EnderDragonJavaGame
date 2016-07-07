@@ -5,13 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by Niki on 12.6.2016 г..
- */
 public class NameBox extends JFrame {
 
-    final JFrame frame = new JFrame();
+    private final JFrame frame = new JFrame();
     public static String playerName = "NoName";
+    private Window window;
 
     public NameBox() {
         JPanel panel = new JPanel();
@@ -22,7 +20,7 @@ public class NameBox extends JFrame {
         frame.setUndecorated(true);
         frame.setTitle("Enter you name");
         frame.setVisible(true);
-        frame.setLocation(600, 350);
+        frame.setLocationRelativeTo(null);
         frame.requestFocus();
         frame.setSize(400, 200);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
