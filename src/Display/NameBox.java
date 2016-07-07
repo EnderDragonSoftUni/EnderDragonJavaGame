@@ -56,7 +56,7 @@ public class NameBox extends JFrame {
 
     private void setPlayerName(String name) {
         System.out.println(name);
-        if (name == null || name.equals("") || name.equals(" ")) {
+        if (name.equals("") || name.contains(" ")) {
             playerName = "NoName";
         } else {
             playerName = name;

@@ -15,19 +15,17 @@ import java.util.Map;
 import static java.nio.file.StandardOpenOption.APPEND;
 import static java.nio.file.StandardOpenOption.CREATE;
 
-/**
- * Created by iliyapetrov on 11.06.16.
- */
 public class Score {
     public static Map<String, Long> highscores = new HashMap<>();
     private long score;
-    private int highScoreX = Game.WIDTH / 2 - 180;
-    private int highScoreY = 140;
-    private int textX = highScoreX + 55;
+    private int highScoreX = Game.WIDTH / 2 - 120;
+    private int highScoreY = 50;
+    private int textX = 20;
     private int textY = highScoreY + 50;
     private final int WIDTH = 370;
     private final int HEIGHT = 150;
-    private Font font = new Font("Calibri", Font.BOLD, 20);
+    private Font font = new Font("Showcard Gothic", Font.BOLD, 40);
+    private Font font1 = new Font(Font.MONOSPACED, Font.BOLD, 25);
     public static List<String> topList = new ArrayList<>();
 
     public Score(long score) {
@@ -63,17 +61,20 @@ public class Score {
         try (BufferedReader br = new BufferedReader(new FileReader(new File("./highscores.data")))) {
             topList = new ArrayList<>();
             String line = null;
-            while ((line = br.readLine()) != null) {
+
+            int counter = 0;
+            while ((line = br.readLine()) != null && counter < 8) {
 
                 String[] tokens = line.split(" ");
                 if (!highscores.containsKey(tokens[0]) || highscores.get(tokens[0]) < Long.valueOf(tokens[1])) {
                     highscores.put(tokens[0], Long.valueOf(tokens[1]));
                 }
+                counter++;
             }
             br.close();
 
             highscores.entrySet().stream().sorted((s1, s2) -> s2.getValue().compareTo(s1.getValue())).forEach(entry -> {
-                String temp = entry.getKey() + "............" + entry.getValue();
+                String temp = entry.getKey() + " " + entry.getValue();
                 topList.add(temp);
             });
 
@@ -92,18 +93,33 @@ public class Score {
 
     public void render(Graphics g) {
         this.getTop3();
-        g.setColor(Color.DARK_GRAY);
-        g.fillRect(this.highScoreX, this.highScoreY, this.WIDTH, this.HEIGHT);
+
         g.setColor(Color.BLUE);
         g.setFont(font);
-        g.drawString("HIGH SCORE:", textX + 55, textY);
-        g.setColor(Color.yellow);
+        g.drawString("HIGH SCORES", highScoreX, highScoreY);
 
+        g.setFont(font1);
+        g.setColor(Color.BLACK);
 
-        int poss = 30;
-        for (int i = 0; i < topList.size() && i < 3; i++) {
-            g.drawString(topList.get(i), textX, textY + poss);
-            poss += 25;
+        int poss = 0;
+        for (int i = 0; i < topList.size(); i++) {
+            String[] data = topList.get(i).split("\\s+");
+            String name = data[0];
+            Long result = Long.parseLong(data[1]);
+
+            g.drawString(String.format("%d.  %s%s%d", i + 1, name ,
+                    fillWithSpaces(name, result), result) , textX, textY + poss);
+            poss += 35;
         }
+    }
+
+    private String  fillWithSpaces(String name, Long result){
+        StringBuilder spacesString = new StringBuilder();
+        int spacesLenght = 35 - name.length() - String.valueOf(result).length();
+
+        for (int i = 0; i < spacesLenght; i++) {
+            spacesString.append(" ");
+        }
+        return spacesString.toString();
     }
 }

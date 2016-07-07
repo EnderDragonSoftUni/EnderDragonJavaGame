@@ -12,9 +12,10 @@ public class Button {
     private BufferedImage image;
 
     public Button(int x, int y, BufferedImage image) {
-        this(x,y,200,80,image);
+        this(x, y, 200, 80, image);
     }
-    public Button(int x, int y, int width, int height, BufferedImage image){
+
+    public Button(int x, int y, int width, int height, BufferedImage image) {
         this.x = x;
         this.y = y;
         this.width = width;

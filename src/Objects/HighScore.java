@@ -4,9 +4,7 @@ import GraphicHandler.LevelHandler;
 
 import java.awt.*;
 
-/**
- * Created by Anton on 09-Jun-16.
- */
+
 public class HighScore {
 
     private String score;
