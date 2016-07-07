@@ -62,14 +62,12 @@ public class Score {
             topList = new ArrayList<>();
             String line = null;
 
-            int counter = 0;
-            while ((line = br.readLine()) != null && counter < 8) {
+            while ((line = br.readLine()) != null) {
 
                 String[] tokens = line.split(" ");
                 if (!highscores.containsKey(tokens[0]) || highscores.get(tokens[0]) < Long.valueOf(tokens[1])) {
                     highscores.put(tokens[0], Long.valueOf(tokens[1]));
                 }
-                counter++;
             }
             br.close();
 
@@ -102,7 +100,7 @@ public class Score {
         g.setColor(Color.BLACK);
 
         int poss = 0;
-        for (int i = 0; i < topList.size(); i++) {
+        for (int i = 0; i < topList.size() && i < 8; i++) {
             String[] data = topList.get(i).split("\\s+");
             String name = data[0];
             Long result = Long.parseLong(data[1]);
