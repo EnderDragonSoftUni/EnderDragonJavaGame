@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 public class NameBox extends JFrame {
 
     final JFrame frame = new JFrame();
-    public static String playerName;
+    public static String playerName = "NoName";
 
     public NameBox() {
         JPanel panel = new JPanel();
@@ -22,7 +22,7 @@ public class NameBox extends JFrame {
         frame.setUndecorated(true);
         frame.setTitle("Enter you name");
         frame.setVisible(true);
-        frame.setLocation(480, 280);
+        frame.setLocation(600, 350);
         frame.requestFocus();
         frame.setSize(400, 200);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -56,7 +56,7 @@ public class NameBox extends JFrame {
 
     private void setPlayerName(String name) {
         System.out.println(name);
-        if (name.equals("") || name.equals(" ")) {
+        if (name == null || name.equals("") || name.equals(" ")) {
             playerName = "NoName";
         } else {
             playerName = name;

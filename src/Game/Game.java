@@ -6,6 +6,8 @@ import GraphicHandler.*;
 import Objects.HighScore;
 import Objects.Player;
 import Objects.ProgressBar;
+import fortune.Fortune;
+import fortune.Labyrinth;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -37,6 +39,8 @@ public class Game extends Canvas implements Runnable {
     private ProgressBar progressBar;
     private LevelHandler levelHandler;
     private InputHandler inputHandler;
+    private Fortune fortune;
+    private Labyrinth labirinth;
 
 
     public int getScore() {
@@ -52,6 +56,7 @@ public class Game extends Canvas implements Runnable {
         Game,
         Shop,
         HighScore,
+        Labyrinth,
         Credentials,
         End
     }
@@ -66,6 +71,8 @@ public class Game extends Canvas implements Runnable {
         this.currentScore = new Score(score);
         this.progressBar = new ProgressBar(this);
         this.levelHandler = new LevelHandler(this.platformHandler, this.giftHandler);
+        this.labirinth = new Labyrinth();
+        this.fortune = new Fortune();
 
         PlatformHandler.addStartingPlatforms();
         GiftHandler.addRandomGifts();
@@ -131,7 +138,7 @@ public class Game extends Canvas implements Runnable {
                 frames++;
                 if (System.currentTimeMillis() - timer > 1000) {
                     timer += 1000;
-                    System.out.println("FPS " + frames);
+//                    System.out.println("FPS " + frames);
                     frames = 0;
                 }
             }
@@ -190,6 +197,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void resetGame() {
+//        this.fortune.start();
         currentScore = new Score(score);
         Score.tick(currentScore);
         Game.gameState = Game.STATE.End;

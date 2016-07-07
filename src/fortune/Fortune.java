@@ -1,5 +1,7 @@
 package fortune;
 
+import Game.Game;
+
 import javax.swing.*;
 
 /**
@@ -15,7 +17,7 @@ public class Fortune {
     public void start() {
         this.labyrinthEngine.start();
         JFrame f = new JFrame();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setLocation(Game.WIDTH, Game.HEIGHT);
         f.requestFocus();
         labyrinthEngine.getLabyrinth().setBounds(0, 0, 680, 720);
         f.add(labyrinthEngine.getLabyrinth());
