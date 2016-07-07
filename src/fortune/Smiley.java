@@ -29,15 +29,12 @@ public class Smiley implements IRenderToCanvas {
 
     @Override
     public void render(Graphics g) {
-        //перед рисованием вызываем метод обновления
+      
         update();
-        //используем статическое позиционирование
         g.drawImage(imageSrc, posRenderX, posRenderY, width, height, null);
     }
 
-    /**
-     * Метод обновляет данные о положении игрока на карте.
-     */
+   
     protected void update() {
         if (mapPath != null && mapPath.hasNext()) {
             if (mapPath.p == null) {
