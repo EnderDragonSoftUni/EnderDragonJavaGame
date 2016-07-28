@@ -11,7 +11,7 @@ import java.awt.*;
 public class Smiley implements IRenderToCanvas {
     public static final int INITIAL_SPEED = 10;
     public static final int INITIAL_WIDTH = 40;
-    public static final int INITIAL_HEIGHT =40
+    public static final int INITIAL_HEIGHT =40;
 
     protected Image imageSrc;
     protected int posX;

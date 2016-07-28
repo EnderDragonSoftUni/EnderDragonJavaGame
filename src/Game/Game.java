@@ -6,6 +6,7 @@ import GraphicHandler.*;
 import Objects.HighScore;
 import Objects.Player;
 import Objects.ProgressBar;
+import Objects.gift.Gift;
 import fortune.Fortune;
 import fortune.Labyrinth;
 
@@ -22,8 +23,10 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 320 * SCALE;
     public static final int HEIGHT = WIDTH / 12 * 9;
     public static final String TITLE = "Icy Tower+";
-    public static int score = 0;
+
     public static Score currentScore;
+    public static int score = 0;
+    public static int coins = 0;
 
     public static boolean item1unlocked = false;
     public static boolean item2unlocked = false;
@@ -49,6 +52,14 @@ public class Game extends Canvas implements Runnable {
 
     public void setScore(int score) {
         Game.score = score;
+    }
+
+    public static void addScore(Gift tempObject) {
+        score += getPoints(tempObject);
+    }
+
+    public static void addCoin() {
+        coins++;
     }
 
     public enum STATE {
@@ -215,5 +226,18 @@ public class Game extends Canvas implements Runnable {
 
     public void createPlayer() {
         player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler, giftHandler, progressBar);
+    }
+
+    public static Integer getPoints(Gift get) {
+        switch (get.getClass().getSimpleName()) {
+            case "GoldCoin":
+                return 500;
+            case "SilverCoin":
+                return 200;
+            case "CopperCoin":
+                return 75;
+            default:
+                return 0;
+        }
     }
 }

@@ -40,7 +40,7 @@ public class Menu extends MouseAdapter {
                 return;
             }
 
-            if (mouseOver(mx, my, Assets.highScoreButton.getX(), Assets.highScoreButton.getY(), 200, 80)){
+            if (mouseOver(mx, my, Assets.highScoreButton.getX(), Assets.highScoreButton.getY(), 200, 80)) {
                 Game.gameState = Game.STATE.HighScore;
                 return;
             }
@@ -93,7 +93,7 @@ public class Menu extends MouseAdapter {
             }
         }
 
-        if (Game.gameState == Game.STATE.HighScore){
+        if (Game.gameState == Game.STATE.HighScore) {
             if (mouseOver(mx, my, Assets.shopBackButton.getX(), Assets.shopBackButton.getY(), 200, 80)) {
                 Game.gameState = Game.STATE.Menu;
             }
@@ -135,6 +135,8 @@ public class Menu extends MouseAdapter {
             g.drawString(String.format("You lost with a score of: %d", this.game.getScore()), Game.WIDTH / 5 - 40, 250);
         } else if (Game.gameState == Game.STATE.Shop) {
             Assets.shopBackButton.render(g);
+
+            g.drawString(String.format("Coins: %s", Game.coins), 10, 20);
 
             g.drawImage(Assets.wizImage, Assets.buyItemOneButton.getX() - 20, Assets.buyItemOneButton.getY() - 130,
                     null);

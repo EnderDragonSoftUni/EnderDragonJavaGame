@@ -9,8 +9,6 @@ import java.util.Random;
 
 public class Player {
 
-    ;
-    
     private int x, y, cropWidth, cropHeight, velocity, playerWidth, playerHeight;
     private int spriteCol;
     private int spriteRow;
@@ -29,7 +27,6 @@ public class Player {
     public static final int THISVELOCITY = 15;
     public static final int CROPWIDTH = 108;
     public static final int CROPHEIGHT = 140;
-    private static int bonusPoint = 0;
 
     public static final int VELOCITY = 15;
 
@@ -60,6 +57,9 @@ public class Player {
     }
 
     public void tick() {
+
+        checkGiftCollision();
+
         if (getBounds().intersects(new Rectangle(0, 475, 700, 60))) {
             isDead = true;
         }
@@ -76,13 +76,6 @@ public class Player {
             inAir = false;
         } else {
             inAir = true;
-        }
-
-        if (giftsCollision()) {
-            // Sound.playSound("res/audio/WOW.wav");
-
-            Game.score += bonusPoint;//100 * this.y / 250;
-            progressBar.setProgress(true);
         }
 
         InputHandler.jumped = false;
@@ -130,37 +123,20 @@ public class Player {
         return collis;
     }
 
-    private boolean giftsCollision() {
+    private boolean checkGiftCollision() {
         boolean giftsCollision = false;
         for (int i = 0; i < GiftHandler.objects.size(); i++) {
             Gift tempObject = GiftHandler.objects.get(i);
 
             if (this.getBounds().intersects(tempObject.getBounds())) {
                 giftsCollision = true;
-                getBonusPoint(GiftHandler.objects.get(i));
+                Game.addScore(tempObject);
+                Game.addCoin();
+                this.progressBar.setProgress(true);
                 GiftHandler.objects.remove(i);
-                //y = tempObject.getTopBounds().y - this.playerHeight + 13;
             }
 
         }
         return giftsCollision;
-    }
-
-    private void getBonusPoint(Gift get) {
-        switch (get.getClass().getSimpleName()) {
-            case "GoldCoin":
-                bonusPoint = 500;
-                break;
-            case "SilverCoin":
-                bonusPoint = 200;
-                break;
-            case "CopperCoin":
-                bonusPoint = 75;
-                break;
-            default:
-                bonusPoint = 0;
-
-        }
-
     }
 }
