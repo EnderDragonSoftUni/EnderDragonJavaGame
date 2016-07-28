@@ -24,16 +24,16 @@ public class LabyrinthEngine implements Runnable {
         public void keyPressed(KeyEvent e) {
 
             if (e.getKeyCode() == 37) {
-                smiley.directionX = -1;
+                smiley.directionX = -1;  //left
             }
             if (e.getKeyCode() == 39) {
-                smiley.directionX = 1;
+                smiley.directionX = 1;   //right
             }
             if (e.getKeyCode() == 38) {
-                smiley.directionY = -1;
+                smiley.directionY = -1;  //down
             }
             if (e.getKeyCode() == 40) {
-                smiley.directionY = 1;
+                smiley.directionY = 1;   //up
             }
 
         }
