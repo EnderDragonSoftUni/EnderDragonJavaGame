@@ -61,34 +61,47 @@ public class Menu extends MouseAdapter {
         if (Game.gameState == Game.STATE.Shop) {
             if (mouseOver(mx, my, Assets.shopBackButton.getX(), Assets.shopBackButton.getY(), 200, 80)) {
                 Game.gameState = Game.STATE.Menu;
-
+            }
+            if (mouseOver(mx, my, Assets.selectButtonLeft.getX(), Assets.selectButtonLeft.getY(), 100, 40) && Game.itemOneUnlocked) {
+                Game.item1Selected = true;
+                Game.item2Selected = false;
+                Game.item3Selected = false;
+                Player.img = Assets.wizard;
+                return;
+            }
+            if (mouseOver(mx, my, Assets.selectButtonMiddle.getX(), Assets.selectButtonMiddle.getY(), 100, 40) && Game.itemTwoUnlocked) {
+                Game.item1Selected = false;
+                Game.item2Selected = true;
+                Game.item3Selected = false;
+                Player.img = Assets.nakov;
+                return;
+            }
+            if (mouseOver(mx, my, Assets.selectButtonRight.getX(), Assets.selectButtonRight.getY(), 100, 40) && Game.itemThreeUnlocked) {
+                Game.item1Selected = false;
+                Game.item2Selected = false;
+                Game.item3Selected = true;
+                Player.img = Assets.zombie;
                 return;
             }
             if (mouseOver(mx, my, Assets.buyItemOneButton.getX(), Assets.buyItemOneButton.getY(), 100, 40)) {
-                Game.item1unlocked = true;
-                Game.item2unlocked = false;
-                Game.item3unlocked = false;
-
-                Player.img = Assets.wizard;
-
+                if (Game.coins >= 40) {
+                    Game.itemOneUnlocked = true;
+                    Game.coins -= 40;
+                }
                 return;
             }
             if (mouseOver(mx, my, Assets.buyItemTwoButton.getX(), Assets.buyItemTwoButton.getY(), 100, 40)) {
-                Game.item2unlocked = true;
-                Game.item1unlocked = false;
-                Game.item3unlocked = false;
-
-                Player.img = Assets.nakov;
-
+                if (Game.coins >= 60) {
+                    Game.itemTwoUnlocked = true;
+                    Game.coins -= 60;
+                }
                 return;
             }
             if (mouseOver(mx, my, Assets.buyItemThreeButton.getX(), Assets.buyItemThreeButton.getY(), 100, 40)) {
-                Game.item3unlocked = true;
-                Game.item2unlocked = false;
-                Game.item1unlocked = false;
-
-                Player.img = Assets.zombie;
-
+                if (Game.coins >= 15) {
+                    Game.itemThreeUnlocked = true;
+                    Game.coins -= 15;
+                }
                 return;
             }
         }
@@ -136,23 +149,32 @@ public class Menu extends MouseAdapter {
         } else if (Game.gameState == Game.STATE.Shop) {
             Assets.shopBackButton.render(g);
 
-            g.drawString(String.format("Coins: %s", Game.coins), 10, 20);
+            g.drawImage(Assets.wizImage, Assets.buyItemOneButton.getX() - 20, Assets.buyItemOneButton.getY() - 130, null);
+            g.drawImage(Assets.nakovImage, Assets.buyItemTwoButton.getX() - 10, Assets.buyItemTwoButton.getY() - 130, null);
+            g.drawImage(Assets.zombieImage, Assets.buyItemThreeButton.getX() - 10, Assets.buyItemThreeButton.getY() - 130, null);
 
-            g.drawImage(Assets.wizImage, Assets.buyItemOneButton.getX() - 20, Assets.buyItemOneButton.getY() - 130,
-                    null);
-            g.drawImage(Assets.nakovImage, Assets.buyItemTwoButton.getX() - 10, Assets.buyItemTwoButton.getY() - 130,
-                    null);
-            g.drawImage(Assets.zombieImage, Assets.buyItemThreeButton.getX() - 10, Assets.buyItemThreeButton.getY() -
-                    130, null);
-
-            if (!Game.item1unlocked) {
+            if (!Game.itemOneUnlocked) {
                 Assets.buyItemOneButton.render(g);
+                g.drawString("Price: 40", Assets.buyItemOneButton.getX() + 35, Assets.buyItemOneButton.getY() - 150);
             }
-            if (!Game.item2unlocked) {
+            if (!Game.item1Selected && Game.itemOneUnlocked) {
+                Assets.selectButtonLeft.render(g);
+            }
+            if (!Game.itemTwoUnlocked) {
                 Assets.buyItemTwoButton.render(g);
+                g.drawString("Price: 60", Assets.buyItemTwoButton.getX() + 15, Assets.buyItemTwoButton.getY() - 150);
             }
-            if (!Game.item3unlocked) {
+
+            if (!Game.item2Selected && Game.itemTwoUnlocked) {
+                Assets.selectButtonMiddle.render(g);
+            }
+            if (!Game.itemThreeUnlocked) {
                 Assets.buyItemThreeButton.render(g);
+                g.drawString("Price: 15", Assets.buyItemThreeButton.getX() + 35, Assets.buyItemThreeButton.getY() - 150);
+            }
+
+            if (!Game.item3Selected && Game.itemThreeUnlocked) {
+                Assets.selectButtonRight.render(g);
             }
 
         } else if (Game.gameState == Game.STATE.HighScore) {

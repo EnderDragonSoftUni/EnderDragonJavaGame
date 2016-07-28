@@ -28,9 +28,14 @@ public class Game extends Canvas implements Runnable {
     public static int score = 0;
     public static int coins = 0;
 
-    public static boolean item1unlocked = false;
-    public static boolean item2unlocked = false;
-    public static boolean item3unlocked = true;
+    public static boolean itemOneUnlocked = false;
+    public static boolean itemTwoUnlocked = false;
+    public static boolean itemThreeUnlocked = false;
+
+    public static boolean item1Selected = false;
+    public static boolean item2Selected = false;
+    public static boolean item3Selected = false;
+
 
     private Menu menu;
     private HighScore highScore;
@@ -189,6 +194,8 @@ public class Game extends Canvas implements Runnable {
         } else {
             g.drawImage(Assets.background, 0, 0, Game.WIDTH, Game.HEIGHT, null);
         }
+
+        g.drawString(String.format("Coins: %s", coins), 10, 20);
 
         if (gameState == STATE.Game) {
             player.render(g);

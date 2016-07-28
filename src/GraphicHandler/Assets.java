@@ -40,6 +40,18 @@ public class Assets {
     public static int tryAgainButtonX = Game.WIDTH / 2 - 100;
     public static int tryAgainButtonY = 300;
 
+    public static Button selectButtonLeft;
+    public static int selectButtonLeftX = Game.WIDTH / 2 - 250;
+    public static int selectButtonLeftY = 270;
+
+    public static Button selectButtonMiddle;
+    public static int selectButtonMiddleX = Game.WIDTH / 2 - 50;
+    public static int selectButtonMiddleY = 270;
+
+    public static Button selectButtonRight;
+    public static int selectButtonRightX = Game.WIDTH / 2 + 150;
+    public static int selectButtonRightY = 270;
+
     public static Button buyItemOneButton;
     public static int buyItemOneButtonX = Game.WIDTH / 2 - 250;
     public static int buyItemOneButtonY = 270;
@@ -80,10 +92,17 @@ public class Assets {
         tryAgainButton = new Button(tryAgainButtonX, tryAgainButtonY, ImageLoader.loadImage("/TryAgainButton.png"));
 
         buyItemOneButton = new Button(buyItemOneButtonX, buyItemOneButtonY, 100, 40, ImageLoader.loadImage
-                ("/SelectButton.png"));
+                ("/BuyButton.png"));
         buyItemTwoButton = new Button(buyItemTwoButtonX, buyItemTwoButtonY, 100, 40, ImageLoader.loadImage
-                ("/SelectButton.png"));
+                ("/BuyButton.png"));
         buyItemThreeButton = new Button(buyItemThreeButtonX, buyItemThreeButtonY, 100, 40, ImageLoader.loadImage
+                ("/BuyButton.png"));
+
+        selectButtonLeft = new Button(selectButtonLeftX, selectButtonLeftY, 100, 40, ImageLoader.loadImage
+                ("/SelectButton.png"));
+        selectButtonMiddle = new Button(selectButtonMiddleX, selectButtonMiddleY, 100, 40, ImageLoader.loadImage
+                ("/SelectButton.png"));
+        selectButtonRight = new Button(selectButtonRightX, selectButtonRightY, 100, 40, ImageLoader.loadImage
                 ("/SelectButton.png"));
 
         shopButton = new Button(shopButtonX, shopButtonY, ImageLoader.loadImage("/ShopButton.png"));
