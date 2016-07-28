@@ -7,16 +7,20 @@ package fortune;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class Smiley implements IRenderToCanvas {
+    public static final int INITIAL_SPEED = 10;
+    public static final int INITIAL_WIDTH = 40;
+    public static final int INITIAL_HEIGHT =40
 
     protected Image imageSrc;
     protected int posX;
     protected int posY;
-    protected int speed = 10;
+    protected int speed = INITIAL_SPEED;
     protected int directionX = 0;
     protected int directionY = 0;
-    protected int width = 40;
-    protected int height = 40;
+    protected int width = INITIAL_WIDTH;
+    protected int height = INITIAL_HEIGHT;
     protected int posRenderX;
     protected int posRenderY;
     protected MapPath mapPath;
