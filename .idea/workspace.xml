@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="45339677-41a9-4558-9672-e5c73459e60b" name="Default" comment="Added coins. test commit">
+    <list default="true" id="45339677-41a9-4558-9672-e5c73459e60b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Display/NameBox$1.class" afterPath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Display/NameBox$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Display/NameBox$2.class" afterPath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Display/NameBox$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Display/NameBox.class" afterPath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Display/NameBox.class" />
@@ -14,14 +14,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/GraphicHandler/ImageLoader.class" afterPath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/GraphicHandler/ImageLoader.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Objects/ID.class" afterPath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Objects/ID.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Objects/Player.class" afterPath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Objects/Player.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/coin_copper.png" afterPath="$PROJECT_DIR$/res/coin_copper.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/coin_gold.png" afterPath="$PROJECT_DIR$/res/coin_gold.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/coin_silver.png" afterPath="$PROJECT_DIR$/res/coin_silver.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/highscores.data" afterPath="$PROJECT_DIR$/highscores.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Game/Game.java" afterPath="$PROJECT_DIR$/src/Game/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Game/Menu.java" afterPath="$PROJECT_DIR$/src/Game/Menu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GraphicHandler/Assets.java" afterPath="$PROJECT_DIR$/src/GraphicHandler/Assets.java" />
     </list>
     <ignored path="JavaFundamentalsProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -745,7 +738,13 @@
       <option name="project" value="LOCAL" />
       <updated>1469712888851</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Shop is now working with ingame currency">
+      <created>1469735226172</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1469735226172</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -806,7 +805,8 @@
     <MESSAGE value="HighScore design changed" />
     <MESSAGE value="HighScore bug fix." />
     <MESSAGE value="Added coins. test commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added coins. test commit" />
+    <MESSAGE value="Shop is now working with ingame currency" />
+    <option name="LAST_COMMIT_MESSAGE" value="Shop is now working with ingame currency" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
