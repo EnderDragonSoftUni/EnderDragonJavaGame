@@ -96,11 +96,11 @@ public class Assets {
         tryAgainButton = new Button(tryAgainButtonX, tryAgainButtonY, ImageLoader.loadImage("/TryAgainButton.png"));
 
         buyItemOneButton = new Button(buyItemOneButtonX, buyItemOneButtonY, 100, 40, ImageLoader.loadImage
-                ("/SelectButton.png"));
+                ("/BuyButton.png"));
         buyItemTwoButton = new Button(buyItemTwoButtonX, buyItemTwoButtonY, 100, 40, ImageLoader.loadImage
-                ("/SelectButton.png"));
+                ("/BuyButton.png"));
         buyItemThreeButton = new Button(buyItemThreeButtonX, buyItemThreeButtonY, 100, 40, ImageLoader.loadImage
-                ("/SelectButton.png"));
+                ("/BuyButton.png"));
 
         selectButtonLeft = new Button(selectButtonLeftX, selectButtonLeftY, 100, 40, ImageLoader.loadImage
                 ("/SelectButton.png"));

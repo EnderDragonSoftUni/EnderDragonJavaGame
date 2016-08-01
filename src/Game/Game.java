@@ -228,7 +228,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void resetGame() {
-//        this.fortune.start();
+        this.fortune.start();
         currentScore = new Score(score);
         isPaused = false;
         Score.tick(currentScore);
