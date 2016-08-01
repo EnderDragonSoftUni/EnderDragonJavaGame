@@ -6,13 +6,13 @@ import java.awt.*;
 
 
 public class HighScore {
-
+    public static final int FONTSIZE = 28;
     private String score;
     private Font font;
 
     public HighScore(int score) {
         this.score = Integer.toString(score);
-        this.font = new Font("Calibri", Font.BOLD, 28);
+        this.font = new Font("Calibri", Font.BOLD, FONTSIZE);
 
     }
 
