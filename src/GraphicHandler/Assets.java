@@ -24,6 +24,10 @@ public class Assets {
     public static int endButtonX = Game.WIDTH / 2 - 110;
     public static int endButtonY = 320;
 
+    public static Button pauseButton;
+    public static int pauseButtonX = 590;
+    public static int pauseButtonY = 15;
+
     public static Button highScoreButton;
     public static int highScoreButtonX = Game.WIDTH / 2;
     public static int highScoreButtonY = 220;
@@ -92,11 +96,11 @@ public class Assets {
         tryAgainButton = new Button(tryAgainButtonX, tryAgainButtonY, ImageLoader.loadImage("/TryAgainButton.png"));
 
         buyItemOneButton = new Button(buyItemOneButtonX, buyItemOneButtonY, 100, 40, ImageLoader.loadImage
-                ("/BuyButton.png"));
+                ("/SelectButton.png"));
         buyItemTwoButton = new Button(buyItemTwoButtonX, buyItemTwoButtonY, 100, 40, ImageLoader.loadImage
-                ("/BuyButton.png"));
+                ("/SelectButton.png"));
         buyItemThreeButton = new Button(buyItemThreeButtonX, buyItemThreeButtonY, 100, 40, ImageLoader.loadImage
-                ("/BuyButton.png"));
+                ("/SelectButton.png"));
 
         selectButtonLeft = new Button(selectButtonLeftX, selectButtonLeftY, 100, 40, ImageLoader.loadImage
                 ("/SelectButton.png"));
@@ -107,7 +111,13 @@ public class Assets {
 
         shopButton = new Button(shopButtonX, shopButtonY, ImageLoader.loadImage("/ShopButton.png"));
 
-        highScoreButton = new Button(highScoreButtonX, highScoreButtonY, ImageLoader.loadImage("/HighScoreButton.png"));
+        highScoreButton = new Button(highScoreButtonX, highScoreButtonY,
+                ImageLoader.loadImage("/HighScoreButton.png"));
+
+        pauseButton = new Button(pauseButtonX, pauseButtonY,
+                32, 32,
+                ImageLoader.loadImage("/PauseButton.png"));
+
 
         background = ImageLoader.loadImage("/background.png");
         gameLogo = ImageLoader.loadImage("/logo.png");

@@ -28,6 +28,8 @@ public class Game extends Canvas implements Runnable {
     public static int score = 0;
     public static int coins = 0;
 
+    public static boolean isPaused = false;
+
     public static boolean itemOneUnlocked = false;
     public static boolean itemTwoUnlocked = false;
     public static boolean itemThreeUnlocked = false;
@@ -163,15 +165,17 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         if (gameState == STATE.Game) {
-            player.tick();
-            platformHandler.tick();
-            giftHandler.tick();
-            progressBar.tick();
-            highScore.tick(score);
-            levelHandler.tick();
+            if (!isPaused) {
+                player.tick();
+                platformHandler.tick();
+                giftHandler.tick();
+                progressBar.tick();
+                highScore.tick(score);
+                levelHandler.tick();
 
-            if (Player.isDead) {
-                this.resetGame();
+                if (Player.isDead) {
+                    this.resetGame();
+                }
             }
         } else if (gameState == Game.STATE.Menu ||
                 gameState == STATE.End ||
@@ -189,10 +193,13 @@ public class Game extends Canvas implements Runnable {
         }
         Graphics g = bs.getDrawGraphics();
 
+
         if (gameState == STATE.Game || gameState == STATE.End) {
             levelHandler.render(g);
         } else {
+
             g.drawImage(Assets.background, 0, 0, Game.WIDTH, Game.HEIGHT, null);
+
         }
 
         g.drawString(String.format("Coins: %s", coins), 10, 20);
@@ -203,13 +210,18 @@ public class Game extends Canvas implements Runnable {
             giftHandler.render(g);
             highScore.render(g);
             progressBar.render(g);
+            if (!isPaused) {
+                Assets.pauseButton.render(g);
+            } else {
 
+            }
         } else if (gameState == Game.STATE.Menu ||
                 gameState == STATE.End ||
                 gameState == STATE.Shop ||
                 gameState == STATE.HighScore) {
             menu.render(g);
         }
+
 
         g.dispose();
         bs.show();
@@ -218,6 +230,7 @@ public class Game extends Canvas implements Runnable {
     public void resetGame() {
 //        this.fortune.start();
         currentScore = new Score(score);
+        isPaused = false;
         Score.tick(currentScore);
         Game.gameState = Game.STATE.End;
         Player.isDead = false;

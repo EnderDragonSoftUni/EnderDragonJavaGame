@@ -58,25 +58,40 @@ public class Menu extends MouseAdapter {
             }
         }
 
+        if (Game.gameState == Game.STATE.Game) {
+            //Pause button
+            if (mouseOver(mx, my, Assets.pauseButton.getX(), Assets.pauseButton.getY(),
+                    32, 32)) {
+                if (!Game.isPaused) {
+                    Game.isPaused = true;
+                } else {
+                    Game.isPaused = false;
+                }
+            }
+        }
+
         if (Game.gameState == Game.STATE.Shop) {
             if (mouseOver(mx, my, Assets.shopBackButton.getX(), Assets.shopBackButton.getY(), 200, 80)) {
                 Game.gameState = Game.STATE.Menu;
             }
-            if (mouseOver(mx, my, Assets.selectButtonLeft.getX(), Assets.selectButtonLeft.getY(), 100, 40) && Game.itemOneUnlocked) {
+            if (mouseOver(mx, my, Assets.selectButtonLeft.getX(), Assets.selectButtonLeft.getY(), 100, 40) && Game
+                    .itemOneUnlocked) {
                 Game.item1Selected = true;
                 Game.item2Selected = false;
                 Game.item3Selected = false;
                 Player.img = Assets.wizard;
                 return;
             }
-            if (mouseOver(mx, my, Assets.selectButtonMiddle.getX(), Assets.selectButtonMiddle.getY(), 100, 40) && Game.itemTwoUnlocked) {
+            if (mouseOver(mx, my, Assets.selectButtonMiddle.getX(), Assets.selectButtonMiddle.getY(), 100, 40) &&
+                    Game.itemTwoUnlocked) {
                 Game.item1Selected = false;
                 Game.item2Selected = true;
                 Game.item3Selected = false;
                 Player.img = Assets.nakov;
                 return;
             }
-            if (mouseOver(mx, my, Assets.selectButtonRight.getX(), Assets.selectButtonRight.getY(), 100, 40) && Game.itemThreeUnlocked) {
+            if (mouseOver(mx, my, Assets.selectButtonRight.getX(), Assets.selectButtonRight.getY(), 100, 40) && Game
+                    .itemThreeUnlocked) {
                 Game.item1Selected = false;
                 Game.item2Selected = false;
                 Game.item3Selected = true;
@@ -149,9 +164,12 @@ public class Menu extends MouseAdapter {
         } else if (Game.gameState == Game.STATE.Shop) {
             Assets.shopBackButton.render(g);
 
-            g.drawImage(Assets.wizImage, Assets.buyItemOneButton.getX() - 20, Assets.buyItemOneButton.getY() - 130, null);
-            g.drawImage(Assets.nakovImage, Assets.buyItemTwoButton.getX() - 10, Assets.buyItemTwoButton.getY() - 130, null);
-            g.drawImage(Assets.zombieImage, Assets.buyItemThreeButton.getX() - 10, Assets.buyItemThreeButton.getY() - 130, null);
+            g.drawImage(Assets.wizImage, Assets.buyItemOneButton.getX() - 20, Assets.buyItemOneButton.getY() - 130,
+                    null);
+            g.drawImage(Assets.nakovImage, Assets.buyItemTwoButton.getX() - 10, Assets.buyItemTwoButton.getY() - 130,
+                    null);
+            g.drawImage(Assets.zombieImage, Assets.buyItemThreeButton.getX() - 10, Assets.buyItemThreeButton.getY() -
+                    130, null);
 
             if (!Game.itemOneUnlocked) {
                 Assets.buyItemOneButton.render(g);
@@ -170,7 +188,8 @@ public class Menu extends MouseAdapter {
             }
             if (!Game.itemThreeUnlocked) {
                 Assets.buyItemThreeButton.render(g);
-                g.drawString("Price: 15", Assets.buyItemThreeButton.getX() + 35, Assets.buyItemThreeButton.getY() - 150);
+                g.drawString("Price: 15", Assets.buyItemThreeButton.getX() + 35, Assets.buyItemThreeButton.getY() -
+                        150);
             }
 
             if (!Game.item3Selected && Game.itemThreeUnlocked) {

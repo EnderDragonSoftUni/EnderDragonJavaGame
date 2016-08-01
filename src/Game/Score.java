@@ -1,6 +1,7 @@
 package Game;
 
 import Display.NameBox;
+import GraphicHandler.Assets;
 
 import java.awt.*;
 import java.io.*;
@@ -18,10 +19,10 @@ import static java.nio.file.StandardOpenOption.CREATE;
 public class Score {
     public static Map<String, Long> highscores = new HashMap<>();
     private long score;
-    private int highScoreX = Game.WIDTH / 2 - 120;
-    private int highScoreY = 50;
+    private int highScoreX = Game.WIDTH / 2 - 185;
+    private int highScoreY = 10;
     private int textX = 20;
-    private int textY = highScoreY + 50;
+    private int textY = highScoreY + 105;
     private final int WIDTH = 370;
     private final int HEIGHT = 150;
     private Font font = new Font("Showcard Gothic", Font.BOLD, 40);
@@ -90,9 +91,7 @@ public class Score {
     public void render(Graphics g) {
         this.getTop3();
 
-        g.setColor(Color.BLUE);
-        g.setFont(font);
-        g.drawString("HIGH SCORES", highScoreX, highScoreY);
+        g.drawImage(Assets.hiscore, highScoreX, highScoreY, 400, 80, null);
 
         g.setFont(font1);
         g.setColor(Color.BLACK);
