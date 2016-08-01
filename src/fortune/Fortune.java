@@ -1,6 +1,6 @@
 package fortune;
 
-import Game.Game;
+import game.Game;
 
 import javax.swing.*;
 
