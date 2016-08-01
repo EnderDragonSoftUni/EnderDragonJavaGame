@@ -11,6 +11,11 @@ import java.util.logging.Logger;
 
 public class LabyrinthEngine implements Runnable {
 
+    public  static final int LEFT = 37;
+    public static final int RIGHT = 39;
+    public static final int DOWN = 38;
+    public static final int UP = 40;
+
 
     private boolean running;
     protected int timeDelay = 100;
@@ -23,16 +28,16 @@ public class LabyrinthEngine implements Runnable {
         @Override
         public void keyPressed(KeyEvent e) {
 
-            if (e.getKeyCode() == 37) {
+            if (e.getKeyCode() == LEFT) {
                 smiley.directionX = -1;  //left
             }
-            if (e.getKeyCode() == 39) {
+            if (e.getKeyCode() == RIGHT) {
                 smiley.directionX = 1;   //right
             }
-            if (e.getKeyCode() == 38) {
+            if (e.getKeyCode() == DOWN) {
                 smiley.directionY = -1;  //down
             }
-            if (e.getKeyCode() == 40) {
+            if (e.getKeyCode() == UP) {
                 smiley.directionY = 1;   //up
             }
 
@@ -40,10 +45,10 @@ public class LabyrinthEngine implements Runnable {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            if (e.getKeyCode() == 37 || e.getKeyCode() == 39) {
+            if (e.getKeyCode() == LEFT || e.getKeyCode() == RIGHT) {
                 smiley.directionX = 0;
             }
-            if (e.getKeyCode() == 38 || e.getKeyCode() == 40) {
+            if (e.getKeyCode() == DOWN || e.getKeyCode() == UP) {
                 smiley.directionY = 0;
             }
         }
