@@ -2,46 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45339677-41a9-4558-9672-e5c73459e60b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/157.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/DN3D_Tiles1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/EnderNakov.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/Wolf3DWallSheet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/glow_orange.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/data/DN3D_Tiles1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/data/black.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/data/bot-zombie.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/data/doors0031.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/data/game-over.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/data/grassland.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/data/red.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/data/rock2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/data/smiley.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/data/tile7.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/data/white.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fortune/BaseTile.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fortune/Fortune.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fortune/GemaMap.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fortune/IMapCheckPoint.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fortune/IRenderToCanvas.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fortune/Labyrinth.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fortune/LabyrinthEngine.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fortune/Map1.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fortune/Map2.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fortune/Map3.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fortune/MapFindingPath.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fortune/MapPath.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fortune/Smiley.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Game/Game$STATE.class" afterPath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Game/Game$STATE.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Game/Game.class" afterPath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Game/Game.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Game/Score.class" afterPath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Game/Score.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/GraphicHandler/Assets.class" afterPath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/GraphicHandler/Assets.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Objects/gift/Gift.class" afterPath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Objects/gift/Gift.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Sound/Sound$Listener.class" afterPath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Sound/Sound$Listener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Sound/Sound.class" afterPath="$PROJECT_DIR$/out/production/JavaFundamentalsProject/Sound/Sound.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/game/PauseMenu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/Game.java" afterPath="$PROJECT_DIR$/src/game/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/objects/gift/Gift.java" afterPath="$PROJECT_DIR$/src/objects/gift/Gift.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sound/Sound.java" afterPath="$PROJECT_DIR$/src/sound/Sound.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/Menu.java" afterPath="$PROJECT_DIR$/src/game/Menu.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphicHandler/Assets.java" afterPath="$PROJECT_DIR$/src/graphicHandler/Assets.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/statistics/highscores.data" afterPath="$PROJECT_DIR$/src/statistics/highscores.data" />
     </list>
     <ignored path="JavaFundamentalsProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,11 +29,49 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ProgressBar.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/objects/ProgressBar.java">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="-84">
+              <caret line="208" column="39" selection-start-line="208" selection-start-column="39" selection-end-line="208" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Assets.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/graphicHandler/Assets.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="80" column="44" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PauseMenu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/game/PauseMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#PauseMenu#0;class#PauseMenu#0" expanded="false" />
+                <element signature="method#tick#0;class#PauseMenu#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/game/Menu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="69" column="27" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,11 +102,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Window/Window.java" />
-        <option value="$PROJECT_DIR$/src/Objectsasd/Surface.java" />
-        <option value="$PROJECT_DIR$/src/Objects/Surface.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/GameState/StateManager.java" />
         <option value="$PROJECT_DIR$/src/GameState/GameStateManager.java" />
         <option value="$PROJECT_DIR$/src/GraphicHandler/KeyInput.java" />
         <option value="$PROJECT_DIR$/src/Game/Play.java" />
@@ -149,6 +148,11 @@
         <option value="$PROJECT_DIR$/src/Game/Game.java" />
         <option value="$PROJECT_DIR$/src/Game/Launcher.java" />
         <option value="$PROJECT_DIR$/src/game/Launcher.java" />
+        <option value="$PROJECT_DIR$/src/objects/ProgressBar.java" />
+        <option value="$PROJECT_DIR$/src/game/Game.java" />
+        <option value="$PROJECT_DIR$/src/game/PauseMenu.java" />
+        <option value="$PROJECT_DIR$/src/game/Menu.java" />
+        <option value="$PROJECT_DIR$/src/graphicHandler/Assets.java" />
       </list>
     </option>
   </component>
@@ -891,7 +895,7 @@
       <workItem from="1470071316824" duration="2556000" />
       <workItem from="1470075011017" duration="120000" />
       <workItem from="1470294104340" duration="10000" />
-      <workItem from="1470294156612" duration="905000" />
+      <workItem from="1470294156612" duration="3763000" />
     </task>
     <task id="LOCAL-00001" summary="Refactoring">
       <created>1465583279845</created>
@@ -974,11 +978,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57366000" />
+    <option name="totallyTimeSpent" value="60224000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1037,7 +1041,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="17" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1046,20 +1050,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/display/Window.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/display/NameBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/game/Score.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1195,16 +1185,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="9" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/game/Score.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -1221,16 +1201,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="9" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphicHandler/Assets.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1335,16 +1305,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="245" column="27" selection-start-line="245" selection-start-column="27" selection-end-line="245" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/Button.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1409,8 +1369,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/ProgressBar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="264">
+          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/zombieImg.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-84">
+          <caret line="208" column="39" selection-start-line="208" selection-start-column="39" selection-end-line="208" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/PauseMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#PauseMenu#0;class#PauseMenu#0" expanded="false" />
+            <element signature="method#tick#0;class#PauseMenu#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="69" column="27" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphicHandler/Assets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="80" column="44" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

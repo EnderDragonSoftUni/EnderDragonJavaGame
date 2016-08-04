@@ -68,6 +68,18 @@ public class Assets {
     public static int buyItemThreeButtonX = Game.WIDTH / 2 + 150;
     public static int buyItemThreeButtonY = 270;
 
+    public static Button continueButton;
+    public static int continueButtonX = Game.WIDTH / 2 - 100;
+    public static int continueButtonY = 70;
+
+    public static Button pauseMenuExit;
+    public static int pauseMenuExitX = Game.WIDTH / 2 - 100;
+    public static int pauseMenuExitY = 310;
+
+    public static Button mainMenuButton;
+    public static int mainMenuButtonX = Game.WIDTH / 2 - 100;
+    public static int mainMenuButtonY = 190;
+
     public static BufferedImage background;
     public static BufferedImage gameLogo;
     public static BufferedImage gameOver;
@@ -118,6 +130,14 @@ public class Assets {
                 32, 32,
                 ImageLoader.loadImage("/PauseButton.png"));
 
+        continueButton = new Button(continueButtonX, continueButtonY,
+                ImageLoader.loadImage("/ContinueButton.png"));
+
+        mainMenuButton = new Button(mainMenuButtonX, mainMenuButtonY,
+                ImageLoader.loadImage("/MainMenuButton.png"));
+
+        pauseMenuExit = new Button(pauseMenuExitX, pauseMenuExitY,
+                ImageLoader.loadImage("/ExitButton.png"));
 
         background = ImageLoader.loadImage("/background.png");
         gameLogo = ImageLoader.loadImage("/logo.png");

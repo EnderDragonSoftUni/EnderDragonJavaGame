@@ -47,6 +47,7 @@ public class Game extends Canvas implements Runnable {
     private ProgressBar progressBar;
     private LevelHandler levelHandler;
     private InputHandler inputHandler;
+    private PauseMenu pauseMenu;
 
     public int getScore() {
         return score;
@@ -83,6 +84,7 @@ public class Game extends Canvas implements Runnable {
         this.highScore = new HighScore(score);
         this.progressBar = new ProgressBar(this);
         this.levelHandler = new LevelHandler(this.platformHandler, this.giftHandler);
+        this.pauseMenu = new PauseMenu();
 
         currentScore = new Score(score);
         PlatformHandler.addStartingPlatforms();
@@ -190,9 +192,7 @@ public class Game extends Canvas implements Runnable {
         if (gameState == STATE.Game || gameState == STATE.End) {
             levelHandler.render(g);
         } else {
-
             g.drawImage(Assets.background, 0, 0, Game.WIDTH, Game.HEIGHT, null);
-
         }
 
         g.drawString(String.format("Coins: %s", coins), 10, 20);
@@ -206,7 +206,7 @@ public class Game extends Canvas implements Runnable {
             if (!isPaused) {
                 Assets.pauseButton.render(g);
             } else {
-
+                this.pauseMenu.render(g);
             }
         } else if (gameState == Game.STATE.Menu ||
                 gameState == STATE.End ||

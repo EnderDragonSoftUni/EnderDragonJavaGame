@@ -58,15 +58,29 @@ public class Menu extends MouseAdapter {
             }
         }
 
-        if (Game.gameState == Game.STATE.Game) {
+        if (Game.gameState == Game.STATE.Game && !Game.isPaused) {
             //Pause button
             if (mouseOver(mx, my, Assets.pauseButton.getX(), Assets.pauseButton.getY(),
                     32, 32)) {
-                if (!Game.isPaused) {
-                    Game.isPaused = true;
-                } else {
-                    Game.isPaused = false;
-                }
+
+                Game.isPaused = true;
+            }
+        }
+
+        if (Game.gameState == Game.STATE.Game && Game.isPaused) {
+            //Continue button
+            if (mouseOver(mx, my, Assets.continueButton.getX(), Assets.continueButton.getY(), 200, 80)){
+                Game.isPaused = false;
+            }
+
+            if (mouseOver(mx, my, Assets.mainMenuButton.getX(), Assets.mainMenuButton.getY(), 200, 80)){
+                Game.isPaused = false;
+                this.game.resetGame();
+                Game.gameState = Game.STATE.Menu;
+            }
+
+            if (mouseOver(mx, my, Assets.pauseMenuExit.getX(), Assets.pauseMenuExit.getY(), 200, 80)){
+                System.exit(1);
             }
         }
 
