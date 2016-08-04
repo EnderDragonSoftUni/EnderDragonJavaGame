@@ -7,12 +7,11 @@ package objects.gift;
 
 import game.Game;
 import graphicHandler.Assets;
+import graphicHandler.GiftHandler;
 import graphicHandler.InputHandler;
 import graphicHandler.SpriteSheet;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import graphicHandler.GiftHandler;
+
+import java.awt.*;
 
 public abstract class Gift {
 

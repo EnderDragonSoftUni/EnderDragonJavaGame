@@ -7,8 +7,6 @@ import objects.HighScore;
 import objects.Player;
 import objects.ProgressBar;
 import objects.gift.Gift;
-import fortune.Fortune;
-import fortune.Labyrinth;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -49,9 +47,6 @@ public class Game extends Canvas implements Runnable {
     private ProgressBar progressBar;
     private LevelHandler levelHandler;
     private InputHandler inputHandler;
-    private Fortune fortune;
-    private Labyrinth labirinth;
-
 
     public int getScore() {
         return score;
@@ -88,8 +83,6 @@ public class Game extends Canvas implements Runnable {
         this.highScore = new HighScore(score);
         this.progressBar = new ProgressBar(this);
         this.levelHandler = new LevelHandler(this.platformHandler, this.giftHandler);
-        this.labirinth = new Labyrinth();
-        this.fortune = new Fortune();
 
         currentScore = new Score(score);
         PlatformHandler.addStartingPlatforms();
@@ -228,7 +221,6 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void resetGame() {
-        this.fortune.start();
         currentScore = new Score(score);
         isPaused = false;
         Score.tick(currentScore);
